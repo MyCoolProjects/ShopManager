@@ -1,0 +1,3 @@
+[submodule "src/main/webapp"]
+	path = src/main/webapp
+	url = https://github.com/noisyboy25/spring-react-pg-client.git
