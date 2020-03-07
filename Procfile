@@ -1,1 +1,1 @@
-web: java -jar -Dserver.port=$PORT build/libs/spring-react-gradle-0.0.1-SNAPSHOT.jar
+web: java -jar -Dserver.port=$PORT -Dspring.datasource.url=$JDBC_DATABASE_URL build/libs/spring-react-gradle-0.0.1-SNAPSHOT.jar
