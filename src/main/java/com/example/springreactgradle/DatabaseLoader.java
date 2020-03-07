@@ -15,6 +15,5 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        this.repository.save(new User("Test1","Test5"));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.springreactgradle;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -8,7 +9,9 @@ import java.util.Objects;
 public class User {
     @Id @GeneratedValue
     private Long id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
 
     private User() {}
