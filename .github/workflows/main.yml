@@ -22,7 +22,7 @@ jobs:
         
           - name: Commit and push
             run: |
-                git submodule update --init --recursive --rebase
+                git submodule update --init --recursive --remote
                 git add .
                 git config --global user.email "you@example.com"
                 git config --global user.name "Your Name"
