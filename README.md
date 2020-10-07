@@ -11,5 +11,5 @@ git clone --recurse-submodules https://github.com/MyCoolProjects/ShopManager.git
 
 Для добавления клиента к существующему репозиторию:
 ```bash
-git submodule update --init --recursive
+git submodule update --init --recursive --remote
 ```
