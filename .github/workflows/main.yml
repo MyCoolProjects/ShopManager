@@ -22,7 +22,8 @@ jobs:
             submodules: true
       - name: Commit and push
         run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
-          git commit
-          git push
+            git add .
+            git config --global user.email "you@example.com"
+            git config --global user.name "Your Name"
+            git commit
+            git push
