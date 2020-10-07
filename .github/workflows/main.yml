@@ -19,7 +19,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         - name: Commit and push
           run: |
-            git submodules update --init --recursive --rebase
+            git submodule update --init --recursive --rebase
             git add .
             git config --global user.email "you@example.com"
             git config --global user.name "Your Name"
