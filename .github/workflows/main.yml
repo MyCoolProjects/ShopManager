@@ -17,11 +17,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        - name: Commit and push
-          run: |
-            git submodule update --init --recursive --rebase
-            git add .
-            git config --global user.email "you@example.com"
-            git config --global user.name "Your Name"
-            git commit
-            git push
+          - name: Checkout repo
+            uses: actions/checkout@v2
+        
+          - name: Commit and push
+          - run: |
+                git submodule update --init --recursive --rebase
+                git add .
+                git config --global user.email "you@example.com"
+                git config --global user.name "Your Name"
+                git commit
+                git push
