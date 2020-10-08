@@ -16,12 +16,12 @@ public class Specifications {
 
     private String value;
 
-    @ManyToOne(cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "specifications_category")
     @JsonIgnore
     Category specifications_category;
 
-    @ManyToOne( fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "specifications_product")
     @JsonIgnore
     Product specifications_product;
@@ -29,7 +29,8 @@ public class Specifications {
     public Specifications() {
     }
 
-    public Specifications(Long id, String name, String value, Category specifications_category, Product specifications_product) {
+    public Specifications(Long id, String name, String value, Category specifications_category,
+            Product specifications_product) {
         this.id = id;
         this.name = name;
         this.value = value;

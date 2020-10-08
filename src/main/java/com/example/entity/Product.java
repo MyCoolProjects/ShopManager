@@ -1,7 +1,5 @@
 package com.example.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,14 +21,15 @@ public class Product {
     @JoinColumn(name = "product_category")
     Category product_category;
 
-    @OneToMany(mappedBy="specifications_product",  fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "specifications_product", fetch = FetchType.EAGER)
     List<Specifications> specifications;
 
     public Product() {
 
     }
 
-    public Product(Long id, String name, float price, String description, Category product_category, List<Specifications> specifications) {
+    public Product(Long id, String name, float price, String description, Category product_category,
+            List<Specifications> specifications) {
         this.id = id;
         this.name = name;
         this.price = price;

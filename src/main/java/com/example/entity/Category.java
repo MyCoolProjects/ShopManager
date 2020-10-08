@@ -15,11 +15,11 @@ public class Category {
 
     private String name;
 
-    @OneToMany(mappedBy="product_category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product_category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     List<Product> product;
 
-    @OneToMany(mappedBy="specifications_category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "specifications_category", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     List<Specifications> specifications;
 
