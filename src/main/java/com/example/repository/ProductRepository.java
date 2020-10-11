@@ -1,11 +1,12 @@
 package com.example.repository;
 
 import com.example.entity.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
     /*
      * @Query(value =
      * "SELECT z.* FROM rek_zm d INNER JOIN proj_a a ON d.id = a.prj_idcislo" +

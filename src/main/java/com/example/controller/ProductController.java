@@ -18,12 +18,12 @@ public class ProductController {
     @Autowired
     SpecificationsRepository specificationsRepository;
 
-    @GetMapping("/productAllGet")
+    @GetMapping("/product")
     public List<Product> productAllGet() {
         return (List<Product>) productRepository.findAll();
     }
 
-    @RequestMapping(value = "/productGet/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
     public Optional<Product> getProduct(@PathVariable("id") Long id) {
         return productRepository.findById(id);
     }

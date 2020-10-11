@@ -6,13 +6,14 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
+@Table(name = "categorie")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name_cat")
     private String name;
 
     @OneToMany(mappedBy = "product_category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
