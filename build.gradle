@@ -47,6 +47,12 @@ node {
 }
 
 task appNpmInstall(type: NpmTask) {
+    inputs.files(fileTree('src/main/webapp/node_modules'))
+    inputs.files(fileTree('src/main/webapp/src'))
+    inputs.file('src/main/webapp/package.json')
+    
+    outputs.dir('build/resources/main/static')
+
     description = "Installs all dependencies from package.json"
     workingDir = file("${project.projectDir}/src/main/webapp")
     args = ["install"]
