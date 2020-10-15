@@ -59,6 +59,10 @@ task appNpmInstall(type: NpmTask) {
 }
 
 task appNpmBuild(type: NpmTask) {
+    inputs.files(fileTree('src/main/webapp/node_modules'))
+    inputs.files(fileTree('src/main/webapp/src'))
+    inputs.file('src/main/webapp/package.json')
+    outputs.dir('build/resources/main/static')
     description = "Builds production of the webapp"
     workingDir = file("${project.projectDir}/src/main/webapp")
     args = ["run", "build"]
