@@ -15,18 +15,18 @@ public class Category {
     @Column(name = "name_cat")
     private String name;
 
-    @OneToMany(mappedBy = "product_category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product_category")
     @JsonIgnore
-    List<Product> product;
+    private List<Product> product;
 
-    @OneToMany(mappedBy = "specifications_category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "id_category")
     @JsonIgnore
-    List<Specifications> specifications;
+    private List<Specification_name> specifications;
 
     public Category() {
     }
 
-    public Category(Long id, String name, List<Product> product, List<Specifications> specifications) {
+    public Category(Long id, String name, List<Product> product, List<Specification_name> specifications) {
         this.id = id;
         this.name = name;
         this.product = product;
@@ -37,31 +37,31 @@ public class Category {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Product> getProduct() {
-        return product;
-    }
-
-    public List<Specifications> getSpecifications() {
-        return specifications;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public List<Product> getProduct() {
+        return product;
+    }
+
     public void setProduct(List<Product> product) {
         this.product = product;
     }
 
-    public void setSpecifications(List<Specifications> specifications) {
+    public List<Specification_name> getSpecifications() {
+        return specifications;
+    }
+
+    public void setSpecifications(List<Specification_name> specifications) {
         this.specifications = specifications;
     }
 }

@@ -2,7 +2,7 @@ package com.example.controller;
 
 import com.example.entity.Product;
 import com.example.repository.ProductRepository;
-import com.example.repository.SpecificationsRepository;
+import com.example.repository.Specification_nameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ public class ProductController {
     ProductRepository productRepository;
 
     @Autowired
-    SpecificationsRepository specificationsRepository;
+    Specification_nameRepository specificationnameRepository;
 
     @GetMapping("/product")
     public List<Product> productAllGet() {
