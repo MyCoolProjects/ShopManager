@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import javax.persistence.*;
 import java.util.List;
 
