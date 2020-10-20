@@ -1,44 +1,35 @@
-package com.example.entity;
+package com.example.form;
 
-import com.example.form.FormProduct;
+import com.example.entity.Category;
+import com.example.entity.Specification_value;
 
-import javax.persistence.*;
-
-import java.util.Base64;
 import java.util.List;
 
-@Entity
-public class Product {
+public class FormProduct {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name_prod")
     private String name;
-
-    private byte[] image;
 
     private float price;
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "id_category")
+    private String image;
+
     Category product_category;
 
-    @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
     List<Specification_value> specifications;
 
-    public Product() {
-
+    public FormProduct() {
     }
 
-    public Product(FormProduct formProduct, byte[] imgByte) {
-        this.name = formProduct.getName();
-        this.price = formProduct.getPrice();
-        this.description = formProduct.getDescription();
-        this.image = imgByte;
+    public FormProduct(Long id, String name, String image, float price, String description, Category product_category, List<Specification_value> specifications) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.description = description;
         this.product_category = product_category;
         this.specifications = specifications;
     }
@@ -59,11 +50,11 @@ public class Product {
         this.name = name;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
