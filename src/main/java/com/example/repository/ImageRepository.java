@@ -1,10 +1,10 @@
 package com.example.repository;
 
-import com.example.entity.Category;
+import com.example.entity.Image;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface ImageRepository extends JpaRepository<Image, Long> {
 }

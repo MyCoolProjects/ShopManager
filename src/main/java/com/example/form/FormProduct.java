@@ -1,6 +1,7 @@
 package com.example.form;
 
 import com.example.entity.Category;
+import com.example.entity.Image;
 import com.example.entity.Specification_value;
 
 import java.util.List;
@@ -15,23 +16,23 @@ public class FormProduct {
 
     private String description;
 
-    private String image;
-
     Category product_category;
 
     List<Specification_value> specifications;
 
+    List<Image> images;
+
     public FormProduct() {
     }
 
-    public FormProduct(Long id, String name, String image, float price, String description, Category product_category, List<Specification_value> specifications) {
+    public FormProduct(Long id, String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
         this.id = id;
         this.name = name;
-        this.image = image;
         this.price = price;
         this.description = description;
         this.product_category = product_category;
         this.specifications = specifications;
+        this.images = images;
     }
 
     public Long getId() {
@@ -48,14 +49,6 @@ public class FormProduct {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public float getPrice() {
@@ -88,5 +81,13 @@ public class FormProduct {
 
     public void setSpecifications(List<Specification_value> specifications) {
         this.specifications = specifications;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

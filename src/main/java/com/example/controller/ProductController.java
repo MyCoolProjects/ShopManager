@@ -8,7 +8,6 @@ import com.example.repository.Specification_nameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 @RestController
@@ -20,6 +19,7 @@ public class ProductController {
     @Autowired
     Specification_nameRepository specificationnameRepository;
 
+    //Получить продукты
     @GetMapping("/product")
     public Map<String, List<Product>> productAllGet() {
         var response = new HashMap<String, List<Product>>();
@@ -27,29 +27,17 @@ public class ProductController {
         return response;
     }
 
+    //Получить продукт
     @GetMapping("/product/{id}")
     public Optional<Product> getProduct(@PathVariable("id") Long id) {
         return productRepository.findById(id);
     }
 
-    //Для изображения
-    @GetMapping("/imageJSON/{product_id}")
-    public Map<String, String> getImage(@PathVariable("product_id") Long product_id) {
-        Map<String, String> image = new HashMap<String, String>();
-        String str = "data:image/jpeg;base64,";
-        byte[] imgBytes = productRepository.getOne(product_id).getImage();
-        String result = Base64.getEncoder().encodeToString(imgBytes);
-        image.put("img", str + result);
-        return image;
-    }
-
-    //Добавить объект
-    @PostMapping("/productPost")
+    //Добавить продукт
+    @PostMapping("/product")
     public void postProduct(@RequestBody FormProduct formProduct) {
-        String[] img = formProduct.getImage().split(",");
-        formProduct.setImage(img[1]);
-        byte[] imgByte = Base64.getDecoder().decode(formProduct.getImage());
-        Product product = new Product(formProduct, imgByte);
+        Product product = new Product(formProduct);
         productRepository.save(product);
     }
+
 }

@@ -4,43 +4,52 @@ import com.example.form.FormProduct;
 
 import javax.persistence.*;
 
-import java.util.Base64;
 import java.util.List;
 
 @Entity
+@Table(name = "Products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_Product")
     private Long id;
 
-    @Column(name = "name_prod")
+    @Column(name = "name_product")
     private String name;
-
-    private byte[] image;
 
     private float price;
 
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "Id_Category")
     Category product_category;
 
-    @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id_spec_product"/*, fetch = FetchType.EAGER*/)
     List<Specification_value> specifications;
+
+    @OneToMany(mappedBy = "id_image_product", fetch = FetchType.EAGER)
+    List<Image> images;
 
     public Product() {
 
     }
 
-    public Product(FormProduct formProduct, byte[] imgByte) {
+    public Product(Long id, String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.product_category = product_category;
+        this.specifications = specifications;
+        this.images = images;
+    }
+
+    public Product(FormProduct formProduct) {
         this.name = formProduct.getName();
         this.price = formProduct.getPrice();
         this.description = formProduct.getDescription();
-        this.image = imgByte;
-        this.product_category = product_category;
-        this.specifications = specifications;
     }
 
     public Long getId() {
@@ -57,14 +66,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 
     public float getPrice() {
@@ -97,5 +98,13 @@ public class Product {
 
     public void setSpecifications(List<Specification_value> specifications) {
         this.specifications = specifications;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }
