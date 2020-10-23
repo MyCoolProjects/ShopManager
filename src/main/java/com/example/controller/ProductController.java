@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("${api-path:/api}")
 public class ProductController {
 
     @Autowired

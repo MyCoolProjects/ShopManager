@@ -34,3 +34,6 @@ out/
 
 application-test.properties
 data.sql
+
+###
+application-*.properties
