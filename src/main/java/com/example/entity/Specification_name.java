@@ -17,7 +17,7 @@ public class Specification_name {
     @Column(name = "name_specification_name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_Category")
     @JsonIgnore
     private Category id_category;

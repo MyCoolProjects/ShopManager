@@ -22,7 +22,7 @@ public class Product {
 
     private String description;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "Id_Category")
     Category product_category;
 

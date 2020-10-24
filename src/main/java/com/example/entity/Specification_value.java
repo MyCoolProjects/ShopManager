@@ -15,12 +15,12 @@ public class Specification_value {
 
     private String value;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
     private Specification_name id_spec_name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_Product")
     @JsonIgnore
     private Product id_spec_product;

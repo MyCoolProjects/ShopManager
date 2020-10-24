@@ -19,7 +19,7 @@ public class Image {
     @JsonIgnore
     private byte[] data;
 
-    @ManyToOne(optional=false, cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "Id_Product")
     @JsonIgnore
     Product id_image_product;
