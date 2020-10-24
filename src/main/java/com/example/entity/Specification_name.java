@@ -5,18 +5,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Specification_names")
 public class Specification_name {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
+    @Column(name = "Id_Specification_name")
     private Long id;
 
-    @Column(name = "name_spec_name")
+    @Column(name = "name_specification_name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_category")
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "Id_Category")
     @JsonIgnore
     private Category id_category;
 

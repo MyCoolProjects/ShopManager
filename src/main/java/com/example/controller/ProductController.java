@@ -1,16 +1,14 @@
 package com.example.controller;
 
 import com.example.entity.Product;
+import com.example.form.FormProduct;
 import com.example.repository.ProductRepository;
 import com.example.repository.Specification_nameRepository;
-import com.fasterxml.jackson.annotation.JsonRawValue;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("${api-path:/api}")
@@ -22,9 +20,7 @@ public class ProductController {
     @Autowired
     Specification_nameRepository specificationnameRepository;
 
-    @JsonRawValue
-    public List<Product> products;
-
+    //Получить продукты
     @GetMapping("/product")
     public Map<String, List<Product>> productAllGet() {
         var response = new HashMap<String, List<Product>>();
@@ -32,9 +28,17 @@ public class ProductController {
         return response;
     }
 
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+    //Получить продукт
+    @GetMapping("/product/{id}")
     public Optional<Product> getProduct(@PathVariable("id") Long id) {
         return productRepository.findById(id);
+    }
+
+    //Добавить продукт
+    @PostMapping("/product")
+    public void postProduct(@RequestBody FormProduct formProduct) {
+        Product product = new Product(formProduct);
+        productRepository.save(product);
     }
 
 }

@@ -5,21 +5,23 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Specification_values")
 public class Specification_value {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_Specification_value")
     private Long id;
 
     private String value;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_spec_name")
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
     private Specification_name id_spec_name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_spec_product")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Id_Product")
     @JsonIgnore
     private Product id_spec_product;
 

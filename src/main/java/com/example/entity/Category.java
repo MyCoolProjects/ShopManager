@@ -5,13 +5,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Categories")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id_Category")
     private Long id;
 
-    @Column(name = "name_cat")
+    @Column(name = "name_category")
     private String name;
 
     @OneToMany(mappedBy = "product_category")

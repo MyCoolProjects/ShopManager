@@ -1,42 +1,31 @@
-package com.example.entity;
+package com.example.form;
 
-import com.example.form.FormProduct;
-
-import javax.persistence.*;
+import com.example.entity.Category;
+import com.example.entity.Image;
+import com.example.entity.Specification_value;
 
 import java.util.List;
 
-@Entity
-@Table(name = "Products")
-public class Product {
+public class FormProduct {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Product")
     private Long id;
 
-    @Column(name = "name_product")
     private String name;
 
     private float price;
 
     private String description;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "Id_Category")
     Category product_category;
 
-    @OneToMany(mappedBy = "id_spec_product"/*, fetch = FetchType.EAGER*/)
     List<Specification_value> specifications;
 
-    @OneToMany(mappedBy = "id_image_product", fetch = FetchType.EAGER)
     List<Image> images;
 
-    public Product() {
-
+    public FormProduct() {
     }
 
-    public Product(Long id, String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
+    public FormProduct(Long id, String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -44,12 +33,6 @@ public class Product {
         this.product_category = product_category;
         this.specifications = specifications;
         this.images = images;
-    }
-
-    public Product(FormProduct formProduct) {
-        this.name = formProduct.getName();
-        this.price = formProduct.getPrice();
-        this.description = formProduct.getDescription();
     }
 
     public Long getId() {
