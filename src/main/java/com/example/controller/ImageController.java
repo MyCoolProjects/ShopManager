@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Base64;
 
 @RestController
-@RequestMapping("${api-path}")
 public class ImageController {
 
     @Autowired
@@ -39,9 +38,8 @@ public class ImageController {
     }
 
     //Получить изображение
-    @RequestMapping(value = "/image/{id}")
-    @ResponseBody
-    public ResponseEntity getImage(@PathVariable Long id)
+    @GetMapping("/image/{id}")
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id)
     {
         String type = imageRepository.getOne(id).getType();
         return ResponseEntity
