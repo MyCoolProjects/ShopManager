@@ -27,11 +27,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long id, String name, List<Product> product, List<Specification_name> specifications) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
-        this.product = product;
-        this.specifications = specifications;
     }
 
     public Long getId() {

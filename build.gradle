@@ -25,16 +25,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.9.RELEASE'
-    //runtimeOnly 'com.h2database:h2'
     compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
-    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.0-rc1'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     runtimeOnly 'org.postgresql:postgresql'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    implementation 'junit:junit:4.12'
+    implementation 'junit:junit:4.12'
 
 }
 
