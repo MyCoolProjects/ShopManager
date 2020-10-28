@@ -6,13 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class DefaultPageController {
 
-    @GetMapping(path = {"/home/**","/product/**","/catalog/**"})
+    @GetMapping({"/","/product/**","/catalog/**"})
     public String defaultPage() {
         return "/app.html";
     }
-    @GetMapping(path = "/")
-    public String homePage() {
-        return "redirect:/home/";
-    }
-
 }
