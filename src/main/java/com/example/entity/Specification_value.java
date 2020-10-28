@@ -15,12 +15,12 @@ public class Specification_value {
 
     private String value;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
     private Specification_name id_spec_name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Product")
     @JsonIgnore
     private Product id_spec_product;
@@ -28,8 +28,7 @@ public class Specification_value {
     public Specification_value() {
     }
 
-    public Specification_value(Long id, String value, Specification_name id_spec_name, Product id_spec_product) {
-        this.id = id;
+    public Specification_value(String value, Specification_name id_spec_name, Product id_spec_product) {
         this.value = value;
         this.id_spec_name = id_spec_name;
         this.id_spec_product = id_spec_product;

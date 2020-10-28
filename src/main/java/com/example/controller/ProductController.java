@@ -4,14 +4,16 @@ import com.example.entity.Product;
 import com.example.form.FormProduct;
 import com.example.repository.ProductRepository;
 import com.example.repository.Specification_nameRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("${api-path:/api}")
+@RequestMapping("${api-path}")
 public class ProductController {
 
     @Autowired
@@ -22,7 +24,7 @@ public class ProductController {
 
     //Получить продукты
     @GetMapping("/product")
-    public Map<String, List<Product>> productAllGet() {
+    public Map<String, List<Product>> getProducts() {
         var response = new HashMap<String, List<Product>>();
         response.put("products", productRepository.findAll());
         return response;

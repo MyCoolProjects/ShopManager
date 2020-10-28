@@ -17,7 +17,7 @@ public class Specification_name {
     @Column(name = "name_specification_name")
     private String name;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Category")
     @JsonIgnore
     private Category id_category;
@@ -30,11 +30,9 @@ public class Specification_name {
     public Specification_name() {
     }
 
-    public Specification_name(Long id, String name, Category id_category, List<Specification_value> specification_values) {
-        this.id = id;
+    public Specification_name(String name, Category id_category) {
         this.name = name;
         this.id_category = id_category;
-        this.specification_values = specification_values;
     }
 
     public Long getId() {

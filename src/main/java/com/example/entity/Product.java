@@ -22,7 +22,7 @@ public class Product {
 
     private String description;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.MERGE)/*(optional = false)*/
     @JoinColumn(name = "Id_Category")
     Category product_category;
 
@@ -36,14 +36,11 @@ public class Product {
 
     }
 
-    public Product(Long id, String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
-        this.id = id;
+    public Product(String name, float price, String description, Category product_category) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.product_category = product_category;
-        this.specifications = specifications;
-        this.images = images;
     }
 
     public Product(FormProduct formProduct) {

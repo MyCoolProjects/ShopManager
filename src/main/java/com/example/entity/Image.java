@@ -1,6 +1,5 @@
 package com.example.entity;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -19,7 +18,7 @@ public class Image {
     @JsonIgnore
     private byte[] data;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "Id_Product")
     @JsonIgnore
     Product id_image_product;
@@ -27,8 +26,7 @@ public class Image {
     public Image() {
     }
 
-    public Image(Long id, String type, byte[] data, Product id_image_product) {
-        this.id = id;
+    public Image(String type, byte[] data, Product id_image_product) {
         this.type = type;
         this.data = data;
         this.id_image_product = id_image_product;
@@ -62,7 +60,6 @@ public class Image {
         return id_image_product;
     }
 
-    @JsonAnyGetter
     public void setId_image_product(Product id_image_product) {
         this.id_image_product = id_image_product;
     }
