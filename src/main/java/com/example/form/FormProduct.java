@@ -8,8 +8,6 @@ import java.util.List;
 
 public class FormProduct {
 
-    private Long id;
-
     private String name;
 
     private float price;
@@ -25,22 +23,13 @@ public class FormProduct {
     public FormProduct() {
     }
 
-    public FormProduct(Long id, String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
-        this.id = id;
+    public FormProduct(String name, float price, String description, Category product_category, List<Specification_value> specifications, List<Image> images) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.product_category = product_category;
         this.specifications = specifications;
         this.images = images;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
