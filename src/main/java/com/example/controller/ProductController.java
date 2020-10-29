@@ -4,6 +4,7 @@ import com.example.entity.Product;
 import com.example.form.FormProduct;
 import com.example.repository.ProductRepository;
 import com.example.repository.Specification_nameRepository;
+import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,9 @@ public class ProductController {
 
     @Autowired
     Specification_nameRepository specificationnameRepository;
+
+    @Autowired
+    ProductService productService;
 
     //Получить продукты
     @GetMapping("/product")
@@ -40,7 +44,7 @@ public class ProductController {
     @PostMapping("/product")
     public void postProduct(@RequestBody FormProduct formProduct) {
         Product product = new Product(formProduct);
-        productRepository.save(product);
+        productService.saveProduct(product);
     }
 
 }
