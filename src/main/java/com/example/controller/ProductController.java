@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.entity.Product;
 import com.example.form.FormProduct;
+import com.example.repository.ImageRepository;
 import com.example.repository.ProductRepository;
 import com.example.repository.Specification_nameRepository;
 import com.example.service.ProductService;
@@ -22,6 +23,9 @@ public class ProductController {
 
     @Autowired
     Specification_nameRepository specificationnameRepository;
+
+    @Autowired
+    ImageRepository imageRepository;
 
     @Autowired
     ProductService productService;

@@ -1,4 +1,3 @@
-/*
 package com.example.test;
 
 import com.example.entity.*;
@@ -132,4 +131,3 @@ public class TestClass {
         imageRepository.saveAndFlush(new Image("image/jpeg", Files.readAllBytes(file2_3.toPath()), product2));
     }
 }
-*/

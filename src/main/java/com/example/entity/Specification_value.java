@@ -11,11 +11,12 @@ public class Specification_value {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Specification_value")
+    @JsonIgnore
     private Long id;
 
     private String value;
 
-    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
+    @ManyToOne(/*optional = false, */cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
     private Specification_name id_spec_name;

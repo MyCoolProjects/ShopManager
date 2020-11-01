@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import com.example.form.FormProduct;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -22,14 +23,15 @@ public class Product {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.MERGE)/*(optional = false)*/
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Category")
     Category product_category;
 
-    @OneToMany(mappedBy = "id_spec_product"/*, fetch = FetchType.EAGER*/)
+    @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
+            //@JsonIgnore
     List<Specification_value> specifications;
 
-    @OneToMany(mappedBy = "id_image_product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id_image_product"/*, fetch = FetchType.EAGER*/)
     List<Image> images;
 
     public Product() {
@@ -47,6 +49,8 @@ public class Product {
         this.name = formProduct.getName();
         this.price = formProduct.getPrice();
         this.description = formProduct.getDescription();
+        this.specifications = formProduct.getSpecifications();
+        this.product_category = formProduct.getProduct_category();
     }
 
     public Long getId() {

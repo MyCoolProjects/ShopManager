@@ -10,9 +10,8 @@ public class Specification_name {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     @Column(name = "Id_Specification_name")
-    private Long id;
+    private Long id_name;
 
     @Column(name = "name_specification_name")
     private String name;
@@ -35,12 +34,12 @@ public class Specification_name {
         this.id_category = id_category;
     }
 
-    public Long getId() {
-        return id;
+    public Long getId_name() {
+        return id_name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId_name(Long id_name) {
+        this.id_name = id_name;
     }
 
     public String getName() {
