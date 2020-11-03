@@ -25,8 +25,8 @@ public class ProductServiceImpl implements ProductService{
     CategoryRepository categoryRepository;
 
     @Override
-    public void saveProduct(Product product) {
-        productRepository.save(product);
+    public Product saveProduct(Product product) {
+        Product product1 = productRepository.save(product);
         for(int i=0; i<product.getSpecifications().size(); i++) {
             if(product.getProduct_category().getId() == specification_nameRepository.getIdCategory(product.getSpecifications().get(i).getId_spec_name().getId_name())) {
                 Specification_value specification_value = product.getSpecifications().get(i);
@@ -36,5 +36,6 @@ public class ProductServiceImpl implements ProductService{
                 specification_valueRepository.save(specification_value);
             }
         }
+        return product1;
     }
 }
