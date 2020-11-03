@@ -1,7 +1,6 @@
 package com.example.entity;
 
 import com.example.form.FormProduct;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -28,10 +27,10 @@ public class Product {
     Category product_category;
 
     @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
-            //@JsonIgnore
+    // @JsonIgnore
     List<Specification_value> specifications;
 
-    @OneToMany(mappedBy = "id_image_product"/*, fetch = FetchType.EAGER*/)
+    @OneToMany(mappedBy = "id_image_product"/* , fetch = FetchType.EAGER */)
     List<Image> images;
 
     public Product() {
