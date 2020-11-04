@@ -3,14 +3,15 @@ package com.example.controller;
 import com.example.entity.Image;
 import com.example.form.FormImage;
 import com.example.repository.ImageRepository;
+import com.example.repository.NewsRepository;
 import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 public class ImageController {
@@ -21,6 +22,9 @@ public class ImageController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    NewsRepository newsRepository;
+
     //Добавить изображение
     @PostMapping("/image")
     public void postImage(@RequestBody FormImage formImage) {
@@ -30,11 +34,20 @@ public class ImageController {
         Image image = new Image();
         image.setType(type2[0]);
         byte[] imgByte = Base64.getDecoder().decode(img[1]);
-        System.out.println(type2[0]);
-        System.out.println(Arrays.toString(imgByte));
         image.setData(imgByte);
-        image.setId_image_product(productRepository.getOne(formImage.getId_image_product()));
+        if(formImage.getId_image_product() == null && formImage.getId_image_news() != null) {
+            image.setId_image_news(newsRepository.getOne(formImage.getId_image_news()));
+        }
+        if(formImage.getId_image_news() == null && formImage.getId_image_product() != null) {
+            image.setId_image_product(productRepository.getOne(formImage.getId_image_product()));
+        }
         imageRepository.save(image);
+    }
+
+    //Получить изображения
+    @GetMapping("/image")
+    public List<Image> getImages() {
+        return imageRepository.findAll();
     }
 
     //Получить изображение

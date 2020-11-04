@@ -23,6 +23,11 @@ public class Image {
     @JsonIgnore
     Product id_image_product;
 
+    @OneToOne
+    @JoinColumn(name = "id_image_news")
+    @JsonIgnore
+    News id_image_news;
+
     public Image() {
     }
 
@@ -62,5 +67,13 @@ public class Image {
 
     public void setId_image_product(Product id_image_product) {
         this.id_image_product = id_image_product;
+    }
+
+    public News getId_image_news() {
+        return id_image_news;
+    }
+
+    public void setId_image_news(News id_image_news) {
+        this.id_image_news = id_image_news;
     }
 }
