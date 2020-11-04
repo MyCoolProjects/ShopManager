@@ -6,6 +6,8 @@ public class FormImage {
 
     private Long id_image_product;
 
+    private Long id_image_news;
+
     public FormImage() {
     }
 
@@ -30,4 +32,11 @@ public class FormImage {
         this.id_image_product = id_image_product;
     }
 
+    public Long getId_image_news() {
+        return id_image_news;
+    }
+
+    public void setId_image_news(Long id_image_news) {
+        this.id_image_news = id_image_news;
+    }
 }
