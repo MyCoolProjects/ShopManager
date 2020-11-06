@@ -2,9 +2,11 @@ package com.example.controller;
 
 import com.example.entity.Image;
 import com.example.form.FormImage;
+import com.example.form.FormImageGET;
 import com.example.repository.ImageRepository;
 import com.example.repository.NewsRepository;
 import com.example.repository.ProductRepository;
+import com.example.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,9 @@ public class ImageController {
 
     @Autowired
     NewsRepository newsRepository;
+
+    @Autowired
+    ImageService imageService;
 
     //Добавить изображение
     @PostMapping("/image")
@@ -46,8 +51,8 @@ public class ImageController {
 
     //Получить изображения
     @GetMapping("/image")
-    public List<Image> getImages() {
-        return imageRepository.findAll();
+    public List<FormImageGET> getImages() {
+        return imageService.getImagesId();
     }
 
     //Получить изображение

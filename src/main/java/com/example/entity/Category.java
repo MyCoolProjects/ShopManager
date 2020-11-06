@@ -20,8 +20,8 @@ public class Category {
     @JsonIgnore
     private List<Product> product;
 
-    @OneToMany(mappedBy = "id_category")
-    @JsonIgnore
+    @OneToMany(mappedBy = "id_category", fetch = FetchType.LAZY)
+    //@JsonIgnore
     private List<Specification_name> specifications;
 
     public Category() {

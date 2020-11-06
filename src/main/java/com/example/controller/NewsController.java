@@ -33,7 +33,6 @@ public class NewsController {
         News news = new News();
         news.setTitle(formNews.getName());
         news.setDescription(formNews.getDescription());
-        news.setImages(imageRepository.getOne(formNews.getId_image_news()));
         newsRepository.save(news);
     }
 
