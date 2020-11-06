@@ -2,7 +2,7 @@
   "addons": ["heroku-postgresql"],
   "buildpacks": [
     {
-      "url": "heroku/gradle"
+      "url": "https://github.com/heroku/heroku-buildpack-gradle#previous-version"
     },
     {
       "url": "https://github.com/SectorLabs/heroku-buildpack-git-submodule.git"
