@@ -22,7 +22,7 @@ jobs:
         
           - name: Commit and push
             run: |
-                git checkout client-staging
+                git checkout origin/client-staging
                 git submodule update --init --recursive --remote
                 git add .
                 git config user.name github-actions
