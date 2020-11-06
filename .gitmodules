@@ -2,5 +2,4 @@
 	path = src/main/webapp
 	url = https://github.com/MyCoolProjects/spring-react-pg-client.git
 	branch = new-client
-[submodule "src/main/webapp/"]
-	branch = new-client
+	update = rebase
