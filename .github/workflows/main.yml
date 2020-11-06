@@ -20,7 +20,7 @@ jobs:
           - name: Checkout repo
             uses: actions/checkout@v2
             with:
-              submodules: 'recursive'
+              submodules: recursive
               fetch-depth: 0
               ref: client-staging
           - name: Commit and push
