@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on: 
     repository_dispatch:
-        types: [ping_repo]
+        types: [push_new_client]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,9 +22,10 @@ jobs:
         
           - name: Commit and push
             run: |
+                git checkout client-staging
                 git submodule update --init --recursive --remote
                 git add .
                 git config user.name github-actions
                 git config user.email github-actions@github.com
                 git commit -m 'Bump client version'
-                git push
+                git push origin/client-staging
