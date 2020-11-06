@@ -30,9 +30,7 @@ public class ProductServiceImpl implements ProductService{
         for(Specification_value spec : product.getSpecifications()) {
             if(product.getProduct_category().getId() == specification_nameRepository.getIdCategory(spec.getId_spec_name().getId_name())) {
                 Specification_value specification_value = spec;
-                specification_value.getId_spec_name().setId_category(product.getProduct_category());
                 specification_value.setId_spec_product(product);
-                specification_value.setId_spec_name(spec.getId_spec_name());
                 specification_valueRepository.save(specification_value);
             }
         }

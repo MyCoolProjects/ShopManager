@@ -17,18 +17,15 @@ public class FormProduct {
 
     List<Specification_value> specifications;
 
-    List<FormImage> formImage;
-
     public FormProduct() {
     }
 
-    public FormProduct(String name, float price, String description, Category product_category, List<Specification_value> specifications, List<FormImage> formImage) {
+    public FormProduct(String name, float price, String description, Category product_category, List<Specification_value> specifications) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.product_category = product_category;
         this.specifications = specifications;
-        this.formImage = formImage;
     }
 
     public String getName() {
@@ -71,11 +68,4 @@ public class FormProduct {
         this.specifications = specifications;
     }
 
-    public List<FormImage> getFormImage() {
-        return formImage;
-    }
-
-    public void setFormImage(List<FormImage> formImage) {
-        this.formImage = formImage;
-    }
 }
