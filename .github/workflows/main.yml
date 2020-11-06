@@ -19,11 +19,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
           - name: Checkout repo
             uses: actions/checkout@v2
-        
+            with:
+              submodules: 'recursive'
+              fetch-depth: 0
+              ref: client-staging
           - name: Commit and push
             run: |
-                git checkout origin/client-staging
-                git submodule update --init --recursive --remote
                 git add .
                 git config user.name github-actions
                 git config user.email github-actions@github.com
