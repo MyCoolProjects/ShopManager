@@ -25,6 +25,7 @@ jobs:
               ref: client-staging
           - name: Commit and push
             run: |
+                git submodule update --init --remote
                 git add .
                 git config user.name github-actions
                 git config user.email github-actions@github.com
