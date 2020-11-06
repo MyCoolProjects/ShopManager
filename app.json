@@ -5,7 +5,7 @@
       "url": "https://github.com/SectorLabs/heroku-buildpack-git-submodule.git"
     },
     {
-      "url": "https://github.com/heroku/heroku-buildpack-gradle#previous-version"
+      "url": "heroku/gradle"
     }
   ]
 }
