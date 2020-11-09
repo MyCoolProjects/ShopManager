@@ -18,31 +18,31 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Product")
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class, Views.ImageBasic.class})
     @JsonProperty("id_product")
     private Long id;
 
     @Column(name = "name_product")
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     private String name;
 
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     private float price;
 
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Category")
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     Category product_category;
 
     @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     List<Specification_value> specifications;
 
     @OneToMany(mappedBy = "id_image_product")
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     List<Image> images;
 
     public Product() {

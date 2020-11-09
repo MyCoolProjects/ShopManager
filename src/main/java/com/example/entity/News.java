@@ -5,14 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({Views.FormImage.class})
+    @JsonView({Views.ImageBasic.class})
     @JsonProperty("id_news")
     private Long id;
 

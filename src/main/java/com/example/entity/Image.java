@@ -14,7 +14,7 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Image")
-    @JsonView({Views.FormImage.class, Views.FormProduct.class})
+    @JsonView({Views.ImageBasic.class, Views.ProductBasic.class})
     private Long id;
 
     @JsonIgnore
@@ -25,13 +25,13 @@ public class Image {
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "Id_Product")
-    @JsonView({Views.FormImage.class})
+    @JsonView({Views.ImageBasic.class})
     @JsonUnwrapped
     Product id_image_product;
 
     @OneToOne
     @JoinColumn(name = "id_image_news")
-    @JsonView({Views.FormImage.class})
+    @JsonView({Views.ImageBasic.class})
     @JsonUnwrapped
     News id_image_news;
 

@@ -1,6 +1,6 @@
 package com.example.view;
 
 public class Views {
-    public interface FormProduct {}
-    public interface FormImage {}
+    public interface ProductBasic {} //ProductBasic
+    public interface ImageBasic {} //ImageBasic
 }

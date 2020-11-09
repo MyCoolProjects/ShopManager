@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Specification_values")
@@ -17,13 +18,14 @@ public class Specification_value {
     @JsonIgnore
     private Long id;
 
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
+    @NotBlank
     private String value;
 
     @ManyToOne(/*optional = false, */cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     private Specification_name id_spec_name;
 
     @ManyToOne(cascade = CascadeType.MERGE)
