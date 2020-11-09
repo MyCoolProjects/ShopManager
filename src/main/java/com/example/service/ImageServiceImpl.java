@@ -1,3 +1,4 @@
+/*
 package com.example.service;
 
 import com.example.entity.Image;
@@ -31,3 +32,4 @@ public class ImageServiceImpl implements ImageService{
         return images;
     }
 }
+*/

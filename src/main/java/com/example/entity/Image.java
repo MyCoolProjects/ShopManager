@@ -1,6 +1,9 @@
 package com.example.entity;
 
+import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 
@@ -11,21 +14,25 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Image")
+    @JsonView({Views.FormImage.class, Views.FormProduct.class})
     private Long id;
 
     @JsonIgnore
     private String type;
+
     @JsonIgnore
     private byte[] data;
 
     @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "Id_Product")
-    @JsonIgnore
+    @JsonView({Views.FormImage.class})
+    @JsonUnwrapped
     Product id_image_product;
 
     @OneToOne
     @JoinColumn(name = "id_image_news")
-    @JsonIgnore
+    @JsonView({Views.FormImage.class})
+    @JsonUnwrapped
     News id_image_news;
 
     public Image() {

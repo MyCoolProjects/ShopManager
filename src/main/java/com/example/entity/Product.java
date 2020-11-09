@@ -1,6 +1,10 @@
 package com.example.entity;
 
 import com.example.form.FormProduct;
+import com.example.view.Views;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 
@@ -8,28 +12,37 @@ import java.util.List;
 
 @Entity
 @Table(name = "Products")
+@JsonPropertyOrder({ "id" })
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Product")
+    @JsonView({Views.FormProduct.class})
+    @JsonProperty("id_product")
     private Long id;
 
     @Column(name = "name_product")
+    @JsonView({Views.FormProduct.class})
     private String name;
 
+    @JsonView({Views.FormProduct.class})
     private float price;
 
+    @JsonView({Views.FormProduct.class})
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Category")
+    @JsonView({Views.FormProduct.class})
     Category product_category;
 
     @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
+    @JsonView({Views.FormProduct.class})
     List<Specification_value> specifications;
 
     @OneToMany(mappedBy = "id_image_product")
+    @JsonView({Views.FormProduct.class})
     List<Image> images;
 
     public Product() {
