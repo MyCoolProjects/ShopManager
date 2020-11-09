@@ -38,7 +38,7 @@ public class ProductController {
 
     //Получить продукты
     @GetMapping("/product")
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     public Map<String, List<Product>> getProducts() {
         var response = new HashMap<String, List<Product>>();
         response.put("products", productRepository.findAll());
@@ -47,7 +47,7 @@ public class ProductController {
 
     //Получить продукт
     @GetMapping("/product/{id}")
-    @JsonView({Views.FormProduct.class})
+    @JsonView({Views.ProductBasic.class})
     public Optional<Product> getProduct(@PathVariable("id") Long id) {
         return productRepository.findById(id);
     }

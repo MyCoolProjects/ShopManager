@@ -26,13 +26,16 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product saveProduct(Product product) {
+        for(Specification_value spec : product.getSpecifications()) {
+            if(product.getProduct_category().getId() != specification_nameRepository.getIdCategory(spec.getId_spec_name().getId_name())) {
+                return null;
+            }
+        }
         Product newProduct = productRepository.save(product);
         for(Specification_value spec : product.getSpecifications()) {
-            if(product.getProduct_category().getId() == specification_nameRepository.getIdCategory(spec.getId_spec_name().getId_name())) {
-                Specification_value specification_value = spec;
-                specification_value.setId_spec_product(product);
-                specification_valueRepository.save(specification_value);
-            }
+            Specification_value specification_value = spec;
+            specification_value.setId_spec_product(product);
+            specification_valueRepository.save(specification_value);
         }
         return newProduct;
     }
