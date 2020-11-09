@@ -1,7 +1,10 @@
 package com.example.entity;
 
+import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,11 +17,13 @@ public class Specification_value {
     @JsonIgnore
     private Long id;
 
+    @JsonView({Views.FormProduct.class})
     private String value;
 
     @ManyToOne(/*optional = false, */cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
+    @JsonView({Views.FormProduct.class})
     private Specification_name id_spec_name;
 
     @ManyToOne(cascade = CascadeType.MERGE)

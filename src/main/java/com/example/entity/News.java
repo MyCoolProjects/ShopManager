@@ -1,5 +1,9 @@
 package com.example.entity;
 
+import com.example.view.Views;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.Optional;
 
@@ -8,6 +12,8 @@ public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView({Views.FormImage.class})
+    @JsonProperty("id_news")
     private Long id;
 
     private String title;
