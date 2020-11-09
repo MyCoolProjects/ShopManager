@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Images")
@@ -21,6 +22,7 @@ public class Image {
     private String type;
 
     @JsonIgnore
+    @NotNull
     private byte[] data;
 
     @ManyToOne(cascade=CascadeType.MERGE)

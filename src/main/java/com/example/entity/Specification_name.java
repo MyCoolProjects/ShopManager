@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,7 @@ public class Specification_name {
 
     @Column(name = "name_specification_name")
     @JsonView({Views.ProductBasic.class})
+    @NotBlank
     private String name;
 
     @ManyToOne(optional = false, cascade = CascadeType.MERGE)

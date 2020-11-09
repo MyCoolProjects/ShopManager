@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,7 @@ public class Category {
 
     @Column(name = "name_category")
     @JsonView({Views.ProductBasic.class})
+    @NotBlank
     private String name;
 
     @OneToMany(mappedBy = "product_category")

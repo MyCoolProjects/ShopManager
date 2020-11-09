@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class News {
@@ -15,6 +16,7 @@ public class News {
     @JsonProperty("id_news")
     private Long id;
 
+    @NotBlank
     private String title;
 
     private String description;

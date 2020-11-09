@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -24,9 +25,11 @@ public class Product {
 
     @Column(name = "name_product")
     @JsonView({Views.ProductBasic.class})
+    @NotBlank
     private String name;
 
     @JsonView({Views.ProductBasic.class})
+    @NotNull
     private float price;
 
     @JsonView({Views.ProductBasic.class})
