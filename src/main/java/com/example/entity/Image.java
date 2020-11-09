@@ -2,6 +2,7 @@ package com.example.entity;
 
 import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -16,6 +17,7 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Image")
     @JsonView({Views.ImageBasic.class, Views.ProductBasic.class})
+    @JsonProperty("id_image")
     private Long id;
 
     @JsonIgnore
