@@ -1,7 +1,11 @@
 package com.example.entity;
 
+import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,17 +15,20 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Category")
+    @JsonView({Views.ProductBasic.class})
     private Long id;
 
     @Column(name = "name_category")
+    @JsonView({Views.ProductBasic.class})
+    @NotBlank
     private String name;
 
     @OneToMany(mappedBy = "product_category")
     @JsonIgnore
     private List<Product> product;
 
-    @OneToMany(mappedBy = "id_category")
-    @JsonIgnore
+    @OneToMany(mappedBy = "id_category", fetch = FetchType.LAZY)
+    //@JsonIgnore
     private List<Specification_name> specifications;
 
     public Category() {

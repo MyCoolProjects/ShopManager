@@ -1,35 +1,51 @@
 package com.example.entity;
 
 import com.example.form.FormProduct;
+import com.example.view.Views;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @Table(name = "Products")
+@JsonPropertyOrder({ "id" })
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Product")
+    @JsonView({Views.ProductBasic.class, Views.ImageBasic.class})
+    @JsonProperty("id_product")
     private Long id;
 
     @Column(name = "name_product")
+    @JsonView({Views.ProductBasic.class})
+    @NotBlank
     private String name;
 
+    @JsonView({Views.ProductBasic.class})
+    @NotNull
     private float price;
 
+    @JsonView({Views.ProductBasic.class})
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Category")
+    @JsonView({Views.ProductBasic.class})
     Category product_category;
 
     @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
+    @JsonView({Views.ProductBasic.class})
     List<Specification_value> specifications;
 
     @OneToMany(mappedBy = "id_image_product")
+    @JsonView({Views.ProductBasic.class})
     List<Image> images;
 
     public Product() {
