@@ -1,8 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.5.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id "com.github.node-gradle.node" version "2.2.3"
-    id 'java'
+  id 'org.springframework.boot' version '2.4.0'
+  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+  id "com.github.node-gradle.node" version "2.2.4"
+  id 'java'
 }
 
 group = 'com.example'
@@ -10,72 +10,56 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
-    mavenCentral()
-}
-
-configurations {
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
+  mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    compile group: 'org.springframework', name: 'spring-jdbc', version: '5.2.9.RELEASE'
-    compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.12.0-rc1'
-    testCompile group: 'com.h2database', name: 'h2', version: '1.4.200'
-
-    runtimeOnly 'org.postgresql:postgresql'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    implementation 'junit:junit:4.12'
-    implementation 'junit:junit:4.12'
-
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-validation'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  runtimeOnly 'org.postgresql:postgresql'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 
 node {
-    download = true
-
-    workDir = file("${project.buildDir}/nodejs")
-
-    npmWorkDir = file("${project.buildDir}/npm")
+  download = true
+  version = "14.15.1"
+  workDir = file("${project.buildDir}/nodejs")
+  npmWorkDir = file("${project.buildDir}/npm")
 }
 
 task appNpmInstall(type: NpmTask) {
-    inputs.files(fileTree('src/main/webapp/node_modules'))
-    inputs.files(fileTree('src/main/webapp/src'))
-    inputs.file('src/main/webapp/package.json')
-    
-    outputs.dir('build/resources/main/static')
-
-    description = "Installs all dependencies from package.json"
-    workingDir = file("${project.projectDir}/src/main/webapp")
-    args = ["install"]
+  inputs.file('src/main/webapp/package.json')
+  inputs.file('src/main/webapp/package-lock.json')
+  outputs.dir('src/main/webapp/node_modules')
+  description = "Installs all dependencies from package.json"
+  workingDir = file("${project.projectDir}/src/main/webapp")
+  args = ["ci"]
 }
 
 task appNpmBuild(type: NpmTask) {
-    inputs.files(fileTree('src/main/webapp/node_modules'))
-    inputs.files(fileTree('src/main/webapp/src'))
-    inputs.file('src/main/webapp/package.json')
-    outputs.dir('build/resources/main/static')
-    description = "Builds production of the webapp"
-    workingDir = file("${project.projectDir}/src/main/webapp")
-    args = ["run", "build"]
+  inputs.files(fileTree('src/main/webapp/node_modules'))
+  inputs.files(fileTree('src/main/webapp/src'))
+  inputs.files(fileTree('src/main/webapp/public'))
+  inputs.file('src/main/webapp/package.json')
+  outputs.dir('build/resources/main/static')
+  description = "Builds production of the webapp"
+  workingDir = file("${project.projectDir}/src/main/webapp")
+  args = ["run", "build"]
 }
 
 task copyWebApp(type: Copy) {
-    from 'src/main/webapp/build'
-    into 'build/resources/main/static/.'
+  inputs.files(fileTree('src/main/webapp/build'))
+  outputs.dir("${project.buildDir}/resources/main/static/.")
+  from 'src/main/webapp/build'
+  into "${project.buildDir}/resources/main/static/."
 }
 
 appNpmBuild.dependsOn appNpmInstall
