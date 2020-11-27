@@ -5,10 +5,7 @@ import com.example.form.FormNews;
 import com.example.repository.ImageRepository;
 import com.example.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,9 +28,15 @@ public class NewsController {
     @PostMapping("/news")
     public void postNews(@RequestBody FormNews formNews) {
         News news = new News();
-        news.setTitle(formNews.getName());
+        news.setTitle(formNews.getTitle());
         news.setDescription(formNews.getDescription());
         newsRepository.save(news);
+    }
+
+    //Удалить продукт
+    @DeleteMapping("/news/{id}")
+    public void deleteNews(@PathVariable("id") Long id) {
+        newsRepository.deleteById(id);
     }
 
 }

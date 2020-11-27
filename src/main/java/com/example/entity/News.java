@@ -21,7 +21,7 @@ public class News {
 
     private String description;
 
-    @OneToOne(mappedBy = "id_image_news")
+    @OneToOne(mappedBy = "id_image_news", cascade=CascadeType.ALL)
     Image images;
 
     public News() {

@@ -86,4 +86,10 @@ public class ImageController {
                 .body(imageRepository.getOne(id).getData());
     }
 
+    //Удалить продукт
+    @DeleteMapping("/image/{id}")
+    public void deleteImage(@PathVariable("id") Long id) {
+        imageRepository.deleteById(id);
+    }
+
 }

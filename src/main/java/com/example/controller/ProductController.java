@@ -62,4 +62,10 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(jsonObject.toString());
     }
+
+    //Удалить продукт
+    @DeleteMapping("/product/{id}")
+    public void deleteProduct(@PathVariable("id") Long id) {
+        productRepository.deleteById(id);
+    }
 }

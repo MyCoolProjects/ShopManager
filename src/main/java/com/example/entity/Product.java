@@ -40,11 +40,11 @@ public class Product {
     @JsonView({Views.ProductBasic.class})
     Category product_category;
 
-    @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
     @JsonView({Views.ProductBasic.class})
     List<Specification_value> specifications;
 
-    @OneToMany(mappedBy = "id_image_product")
+    @OneToMany(mappedBy = "id_image_product", cascade=CascadeType.REMOVE)
     @JsonView({Views.ProductBasic.class})
     List<Image> images;
 
