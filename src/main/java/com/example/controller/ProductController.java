@@ -2,11 +2,11 @@ package com.example.controller;
 
 import com.example.entity.Product;
 import com.example.form.FormProduct;
+import com.example.jsonview.JsonViews;
 import com.example.repository.ImageRepository;
 import com.example.repository.ProductRepository;
 import com.example.repository.Specification_nameRepository;
 import com.example.service.ProductService;
-import com.example.view.Views;
 import com.fasterxml.jackson.annotation.JsonView;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class ProductController {
 
     //Получить продукты
     @GetMapping("/product")
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     public Map<String, List<Product>> getProducts() {
         var response = new HashMap<String, List<Product>>();
         response.put("products", productRepository.findAll());
@@ -47,7 +47,7 @@ public class ProductController {
 
     //Получить продукт
     @GetMapping("/product/{id}")
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     public Optional<Product> getProduct(@PathVariable("id") Long id) {
         return productRepository.findById(id);
     }

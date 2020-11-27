@@ -1,7 +1,7 @@
 package com.example.entity;
 
 import com.example.form.FormProduct;
-import com.example.view.Views;
+import com.example.jsonview.JsonViews;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -19,33 +19,33 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Product")
-    @JsonView({Views.ProductBasic.class, Views.ImageBasic.class})
+    @JsonView({JsonViews.ProductBasic.class, JsonViews.ImageBasic.class})
     @JsonProperty("id_product")
     private Long id;
 
     @Column(name = "name_product")
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     @NotBlank
     private String name;
 
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     @NotNull
     private float price;
 
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Category")
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     Category product_category;
 
     @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     List<Specification_value> specifications;
 
     @OneToMany(mappedBy = "id_image_product", cascade=CascadeType.REMOVE)
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     List<Image> images;
 
     public Product() {

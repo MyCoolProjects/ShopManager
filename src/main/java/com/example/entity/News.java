@@ -1,6 +1,6 @@
 package com.example.entity;
 
-import com.example.view.Views;
+import com.example.jsonview.JsonViews;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -12,7 +12,7 @@ public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({Views.ImageBasic.class})
+    @JsonView({JsonViews.ImageBasic.class})
     @JsonProperty("id_news")
     private Long id;
 

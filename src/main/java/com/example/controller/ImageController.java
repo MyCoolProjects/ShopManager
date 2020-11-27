@@ -5,7 +5,7 @@ import com.example.form.FormImage;
 import com.example.repository.ImageRepository;
 import com.example.repository.NewsRepository;
 import com.example.repository.ProductRepository;
-import com.example.view.Views;
+import com.example.jsonview.JsonViews;
 import com.fasterxml.jackson.annotation.JsonView;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +70,7 @@ public class ImageController {
 
     //Получить изображения
     @GetMapping("/image")
-    @JsonView({Views.ImageBasic.class})
+    @JsonView({JsonViews.ImageBasic.class})
     public List<Image> getImages() {
         return imageRepository.findAll();
     }

@@ -1,6 +1,6 @@
 package com.example.entity;
 
-import com.example.view.Views;
+import com.example.jsonview.JsonViews;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -18,14 +18,14 @@ public class Specification_value {
     @JsonIgnore
     private Long id;
 
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     @NotBlank
     private String value;
 
     @ManyToOne(/*optional = false, */cascade = CascadeType.MERGE)
     @JoinColumn(name = "Id_Specification_name")
     @JsonUnwrapped
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     private Specification_name id_spec_name;
 
     @ManyToOne(cascade = CascadeType.MERGE)

@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.demo;
 
 import com.example.entity.*;
 import com.example.repository.*;
@@ -14,7 +14,7 @@ import java.nio.file.Files;
 
 @Component
 @Profile("demo")
-public class TestClass {
+public class DemoMode {
 
     @Autowired
     ImageRepository imageRepository;

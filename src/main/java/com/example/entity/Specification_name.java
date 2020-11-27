@@ -1,6 +1,6 @@
 package com.example.entity;
 
-import com.example.view.Views;
+import com.example.jsonview.JsonViews;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -15,11 +15,11 @@ public class Specification_name {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Specification_name")
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     private Long id_name;
 
     @Column(name = "name_specification_name")
-    @JsonView({Views.ProductBasic.class})
+    @JsonView({JsonViews.ProductBasic.class})
     @NotBlank
     private String name;
 
