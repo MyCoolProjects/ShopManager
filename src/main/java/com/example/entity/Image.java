@@ -15,8 +15,8 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Image")
-    @JsonView({JsonViews.ImageBasic.class, JsonViews.ProductBasic.class})
+    @Column(name = "id_image")
+    @JsonView({ JsonViews.ImageBasic.class, JsonViews.ProductBasic.class })
     @JsonProperty("id_image")
     private Long id;
 
@@ -27,25 +27,23 @@ public class Image {
     @NotNull
     private byte[] data;
 
-    @ManyToOne(cascade=CascadeType.MERGE)
-    @JoinColumn(name = "Id_Product")
-    @JsonView({JsonViews.ImageBasic.class})
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonView({ JsonViews.ImageBasic.class })
     @JsonUnwrapped
-    Product id_image_product;
+    Product idImageProduct;
 
-    @OneToOne
-    @JoinColumn(name = "id_image_news")
-    @JsonView({JsonViews.ImageBasic.class})
+    @OneToOne()
+    @JsonView({ JsonViews.ImageBasic.class })
     @JsonUnwrapped
-    News id_image_news;
+    NewsPost idImageNews;
 
     public Image() {
     }
 
-    public Image(String type, byte[] data, Product id_image_product) {
+    public Image(String type, byte[] data, Product idImageProduct) {
         this.type = type;
         this.data = data;
-        this.id_image_product = id_image_product;
+        this.idImageProduct = idImageProduct;
     }
 
     public Long getId() {
@@ -72,19 +70,19 @@ public class Image {
         this.data = data;
     }
 
-    public Product getId_image_product() {
-        return id_image_product;
+    public Product getIdImageProduct() {
+        return idImageProduct;
     }
 
-    public void setId_image_product(Product id_image_product) {
-        this.id_image_product = id_image_product;
+    public void setIdImageProduct(Product idImageProduct) {
+        this.idImageProduct = idImageProduct;
     }
 
-    public News getId_image_news() {
-        return id_image_news;
+    public NewsPost getIdImageNews() {
+        return idImageNews;
     }
 
-    public void setId_image_news(News id_image_news) {
-        this.id_image_news = id_image_news;
+    public void setIdImageNews(NewsPost idImageNews) {
+        this.idImageNews = idImageNews;
     }
 }

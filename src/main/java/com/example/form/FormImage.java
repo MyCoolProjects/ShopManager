@@ -2,41 +2,36 @@ package com.example.form;
 
 public class FormImage {
 
-    private String image;
+    private String payload;
 
-    private Long id_image_product;
+    private Long idImageProduct;
 
-    private Long id_image_news;
+    private Long idImageNews;
 
     public FormImage() {
     }
 
-    public FormImage(String image, Long id_image_product) {
-        this.image = image;
-        this.id_image_product = id_image_product;
+    public String getPayload() {
+        return payload;
     }
 
-    public String getImage() {
-        return image;
+    public void setImage(String payload) {
+        this.payload = payload;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public Long getIdImageProduct() {
+        return idImageProduct;
     }
 
-    public Long getId_image_product() {
-        return id_image_product;
+    public void setIdImageProduct(Long idImageProduct) {
+        this.idImageProduct = idImageProduct;
     }
 
-    public void setId_image_product(Long id_image_product) {
-        this.id_image_product = id_image_product;
+    public Long getIdImageNews() {
+        return idImageNews;
     }
 
-    public Long getId_image_news() {
-        return id_image_news;
-    }
-
-    public void setId_image_news(Long id_image_news) {
-        this.id_image_news = id_image_news;
+    public void setIdImageNews(Long idImageNews) {
+        this.idImageNews = idImageNews;
     }
 }

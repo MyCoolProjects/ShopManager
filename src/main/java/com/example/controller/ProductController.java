@@ -5,7 +5,7 @@ import com.example.form.FormProduct;
 import com.example.jsonview.JsonViews;
 import com.example.repository.ImageRepository;
 import com.example.repository.ProductRepository;
-import com.example.repository.Specification_nameRepository;
+import com.example.repository.SpecificationNameRepository;
 import com.example.service.ProductService;
 import com.fasterxml.jackson.annotation.JsonView;
 import net.minidev.json.JSONObject;
@@ -28,7 +28,7 @@ public class ProductController {
     ProductRepository productRepository;
 
     @Autowired
-    Specification_nameRepository specificationnameRepository;
+    SpecificationNameRepository specificationnameRepository;
 
     @Autowired
     ImageRepository imageRepository;
@@ -36,34 +36,32 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    //Получить продукты
+    // Получить продукты
     @GetMapping("/product")
-    @JsonView({JsonViews.ProductBasic.class})
+    @JsonView({ JsonViews.ProductBasic.class })
     public Map<String, List<Product>> getProducts() {
         var response = new HashMap<String, List<Product>>();
         response.put("products", productRepository.findAll());
         return response;
     }
 
-    //Получить продукт
+    // Получить продукт
     @GetMapping("/product/{id}")
-    @JsonView({JsonViews.ProductBasic.class})
+    @JsonView({ JsonViews.ProductBasic.class })
     public Optional<Product> getProduct(@PathVariable("id") Long id) {
         return productRepository.findById(id);
     }
 
-    //Добавить продукт
+    // Добавить продукт
     @PostMapping("/product")
     public ResponseEntity<String> postProduct(@RequestBody FormProduct formProduct) throws IOException {
-        Product product = new Product(formProduct);
-        Product product1 = productService.saveProduct(product);
+        Product product = productService.saveProduct(new Product(formProduct));
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", product1.getId());
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(jsonObject.toString());
+        jsonObject.put("id", product.getId());
+        return ResponseEntity.status(HttpStatus.OK).body(jsonObject.toString());
     }
 
-    //Удалить продукт
+    // Удалить продукт
     @DeleteMapping("/product/{id}")
     public void deleteProduct(@PathVariable("id") Long id) {
         productRepository.deleteById(id);

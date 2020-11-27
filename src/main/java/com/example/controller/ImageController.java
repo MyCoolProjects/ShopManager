@@ -29,64 +29,60 @@ public class ImageController {
     @Autowired
     NewsRepository newsRepository;
 
-    //Добавить изображение
+    // Добавить изображение
     @PostMapping("/image")
     public ResponseEntity<String> postImage(@RequestBody FormImage formImage) {
-        String[] img = formImage.getImage().split(",");
-        String[] type1 = img[0].split(":");
-        String[] type2 = type1[1].split(";");
-        Image image = new Image();
-        image.setType(type2[0]);
-        byte[] imgByte = Base64.getDecoder().decode(img[1]);
-        image.setData(imgByte);
-        if(formImage.getId_image_product() == null && formImage.getId_image_news() != null) {
-            image.setId_image_news(newsRepository.getOne(formImage.getId_image_news()));
-            Image image1 = imageRepository.save(image);
+        try {
+            String payload = formImage.getPayload();
+            String[] img = payload.split(";");
+            String type = img[0].split(":")[1];
+            String data = img[1].split(",")[1];
+            Image image = new Image();
+            image.setType(type);
+            byte[] imgBytes = Base64.getDecoder().decode(data);
+            image.setData(imgBytes);
+
+            if (formImage.getIdImageNews() != null) {
+                image.setIdImageNews(newsRepository.getOne(formImage.getIdImageNews()));
+                Image savedImage = imageRepository.save(image);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", savedImage.getId());
+                return ResponseEntity.status(HttpStatus.OK).body(jsonObject.toString());
+            } else if (formImage.getIdImageProduct() != null) {
+                image.setIdImageProduct(productRepository.getOne(formImage.getIdImageProduct()));
+                Image savedImage = imageRepository.save(image);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", savedImage.getId());
+                return ResponseEntity.status(HttpStatus.OK).body(jsonObject.toString());
+            } else {
+                Image savedImage = imageRepository.save(image);
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("id", savedImage.getId());
+                return ResponseEntity.status(HttpStatus.OK).body(jsonObject.toString());
+            }
+        } catch (Exception e) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id", image1.getId());
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(jsonObject.toString());
+            jsonObject.put("message:", "Error creating image");
+            jsonObject.put("error:", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonObject.toString());
         }
-        if(formImage.getId_image_news() == null && formImage.getId_image_product() != null) {
-            image.setId_image_product(productRepository.getOne(formImage.getId_image_product()));
-            Image image1 = imageRepository.save(image);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id", image1.getId());
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(jsonObject.toString());
-        }
-        if(formImage.getId_image_news() == null && formImage.getId_image_product() == null) {
-            Image image1 = imageRepository.save(image);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id", image1.getId());
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(jsonObject.toString());
-        }
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("message:", "Error create image");
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(jsonObject.toString());
     }
 
-    //Получить изображения
+    // Получить изображения
     @GetMapping("/image")
-    @JsonView({JsonViews.ImageBasic.class})
+    @JsonView({ JsonViews.ImageBasic.class })
     public List<Image> getImages() {
         return imageRepository.findAll();
     }
 
-    //Получить изображение
+    // Получить изображение
     @GetMapping("/image/{id}")
-    public ResponseEntity<byte[]> getImage(@PathVariable Long id)
-    {
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         String type = imageRepository.getOne(id).getType();
-        return ResponseEntity
-                .ok()
-                .contentType(MediaType.valueOf(type))
-                .body(imageRepository.getOne(id).getData());
+        return ResponseEntity.ok().contentType(MediaType.valueOf(type)).body(imageRepository.getOne(id).getData());
     }
 
-    //Удалить продукт
+    // Удалить продукт
     @DeleteMapping("/image/{id}")
     public void deleteImage(@PathVariable("id") Long id) {
         imageRepository.deleteById(id);

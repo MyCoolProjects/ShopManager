@@ -14,7 +14,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Category")
+    @Column(name = "id_category")
     @JsonView({JsonViews.ProductBasic.class})
     private Long id;
 
@@ -23,13 +23,12 @@ public class Category {
     @NotBlank
     private String name;
 
-    @OneToMany(mappedBy = "product_category")
+    @OneToMany(mappedBy = "productCategory")
     @JsonIgnore
     private List<Product> product;
 
-    @OneToMany(mappedBy = "id_category", fetch = FetchType.LAZY)
-    //@JsonIgnore
-    private List<Specification_name> specifications;
+    @OneToMany(mappedBy = "idCategory", fetch = FetchType.LAZY)
+    private List<SpecificationName> specifications;
 
     public Category() {
     }
@@ -62,11 +61,11 @@ public class Category {
         this.product = product;
     }
 
-    public List<Specification_name> getSpecifications() {
+    public List<SpecificationName> getSpecifications() {
         return specifications;
     }
 
-    public void setSpecifications(List<Specification_name> specifications) {
+    public void setSpecifications(List<SpecificationName> specifications) {
         this.specifications = specifications;
     }
 }

@@ -18,45 +18,44 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Product")
-    @JsonView({JsonViews.ProductBasic.class, JsonViews.ImageBasic.class})
+    @Column(name = "id_product")
+    @JsonView({ JsonViews.ProductBasic.class, JsonViews.ImageBasic.class })
     @JsonProperty("id_product")
     private Long id;
 
     @Column(name = "name_product")
-    @JsonView({JsonViews.ProductBasic.class})
+    @JsonView({ JsonViews.ProductBasic.class })
     @NotBlank
     private String name;
 
-    @JsonView({JsonViews.ProductBasic.class})
+    @JsonView({ JsonViews.ProductBasic.class })
     @NotNull
     private float price;
 
-    @JsonView({JsonViews.ProductBasic.class})
+    @JsonView({ JsonViews.ProductBasic.class })
     private String description;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "Id_Category")
-    @JsonView({JsonViews.ProductBasic.class})
-    Category product_category;
+    @JsonView({ JsonViews.ProductBasic.class })
+    Category productCategory;
 
-    @OneToMany(mappedBy = "id_spec_product", fetch = FetchType.EAGER, cascade=CascadeType.REMOVE)
-    @JsonView({JsonViews.ProductBasic.class})
-    List<Specification_value> specifications;
+    @OneToMany(mappedBy = "idSpecProduct", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JsonView({ JsonViews.ProductBasic.class })
+    List<SpecificationValue> specifications;
 
-    @OneToMany(mappedBy = "id_image_product", cascade=CascadeType.REMOVE)
-    @JsonView({JsonViews.ProductBasic.class})
+    @OneToMany(mappedBy = "idImageProduct", cascade = CascadeType.REMOVE)
+    @JsonView({ JsonViews.ProductBasic.class })
     List<Image> images;
 
     public Product() {
 
     }
 
-    public Product(String name, float price, String description, Category product_category) {
+    public Product(String name, float price, String description, Category productCategory) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.product_category = product_category;
+        this.productCategory = productCategory;
     }
 
     public Product(FormProduct formProduct) {
@@ -64,7 +63,7 @@ public class Product {
         this.price = formProduct.getPrice();
         this.description = formProduct.getDescription();
         this.specifications = formProduct.getSpecifications();
-        this.product_category = formProduct.getProduct_category();
+        this.productCategory = formProduct.getProductCategory();
     }
 
     public Long getId() {
@@ -99,19 +98,19 @@ public class Product {
         this.description = description;
     }
 
-    public Category getProduct_category() {
-        return product_category;
+    public Category getProductCategory() {
+        return productCategory;
     }
 
-    public void setProduct_category(Category product_category) {
-        this.product_category = product_category;
+    public void setProductCategory(Category productCategory) {
+        this.productCategory = productCategory;
     }
 
-    public List<Specification_value> getSpecifications() {
+    public List<SpecificationValue> getSpecifications() {
         return specifications;
     }
 
-    public void setSpecifications(List<Specification_value> specifications) {
+    public void setSpecifications(List<SpecificationValue> specifications) {
         this.specifications = specifications;
     }
 

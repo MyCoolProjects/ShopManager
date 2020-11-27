@@ -8,12 +8,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class News {
+@Table(name = "NewsPosts")
+public class NewsPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({JsonViews.ImageBasic.class})
-    @JsonProperty("id_news")
+    @Column(name = "id_news_post")
+    @JsonView({ JsonViews.NewsPostBasic.class, JsonViews.ImageBasic.class })
+    @JsonProperty("id_news_post")
     private Long id;
 
     @NotBlank
@@ -21,10 +23,11 @@ public class News {
 
     private String description;
 
-    @OneToOne(mappedBy = "id_image_news", cascade=CascadeType.ALL)
-    Image images;
+    @JsonView(JsonViews.NewsPostBasic.class)
+    @OneToOne(mappedBy = "idImageNews", cascade = CascadeType.REMOVE)
+    Image image;
 
-    public News() {
+    public NewsPost() {
     }
 
     public Long getId() {
@@ -51,11 +54,11 @@ public class News {
         this.description = description;
     }
 
-    public Image getImages() {
-        return images;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImages(Image images) {
-        this.images = images;
+    public void setImages(Image image) {
+        this.image = image;
     }
 }

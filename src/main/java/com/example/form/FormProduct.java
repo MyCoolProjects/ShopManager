@@ -1,7 +1,7 @@
 package com.example.form;
 
 import com.example.entity.Category;
-import com.example.entity.Specification_value;
+import com.example.entity.SpecificationValue;
 
 import java.util.List;
 
@@ -13,19 +13,11 @@ public class FormProduct {
 
     private String description;
 
-    Category product_category;
+    Category productCategory;
 
-    List<Specification_value> specifications;
+    List<SpecificationValue> specifications;
 
     public FormProduct() {
-    }
-
-    public FormProduct(String name, float price, String description, Category product_category, List<Specification_value> specifications) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.product_category = product_category;
-        this.specifications = specifications;
     }
 
     public String getName() {
@@ -52,19 +44,19 @@ public class FormProduct {
         this.description = description;
     }
 
-    public Category getProduct_category() {
-        return product_category;
+    public Category getProductCategory() {
+        return productCategory;
     }
 
-    public void setProduct_category(Category product_category) {
-        this.product_category = product_category;
+    public void setProductCategory(Category productCategory) {
+        this.productCategory = productCategory;
     }
 
-    public List<Specification_value> getSpecifications() {
+    public List<SpecificationValue> getSpecifications() {
         return specifications;
     }
 
-    public void setSpecifications(List<Specification_value> specifications) {
+    public void setSpecifications(List<SpecificationValue> specifications) {
         this.specifications = specifications;
     }
 

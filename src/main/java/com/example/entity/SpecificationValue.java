@@ -9,12 +9,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Specification_values")
-public class Specification_value {
+@Table(name = "SpecificationValues")
+public class SpecificationValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id_Specification_value")
+    @Column(name = "id_specification_value")
     @JsonIgnore
     private Long id;
 
@@ -23,23 +23,22 @@ public class Specification_value {
     private String value;
 
     @ManyToOne(/*optional = false, */cascade = CascadeType.MERGE)
-    @JoinColumn(name = "Id_Specification_name")
+    @JoinColumn(name = "id_specification_name")
     @JsonUnwrapped
     @JsonView({JsonViews.ProductBasic.class})
-    private Specification_name id_spec_name;
+    private SpecificationName idSpecName;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "Id_Product")
     @JsonIgnore
-    private Product id_spec_product;
+    private Product idSpecProduct;
 
-    public Specification_value() {
+    public SpecificationValue() {
     }
 
-    public Specification_value(String value, Specification_name id_spec_name, Product id_spec_product) {
+    public SpecificationValue(String value, SpecificationName idSpecName, Product idSpecProduct) {
         this.value = value;
-        this.id_spec_name = id_spec_name;
-        this.id_spec_product = id_spec_product;
+        this.idSpecName = idSpecName;
+        this.idSpecProduct = idSpecProduct;
     }
 
     public Long getId() {
@@ -58,19 +57,19 @@ public class Specification_value {
         this.value = value;
     }
 
-    public Specification_name getId_spec_name() {
-        return id_spec_name;
+    public SpecificationName getIdSpecName() {
+        return idSpecName;
     }
 
-    public void setId_spec_name(Specification_name id_spec_name) {
-        this.id_spec_name = id_spec_name;
+    public void setIdSpecName(SpecificationName idSpecName) {
+        this.idSpecName = idSpecName;
     }
 
-    public Product getId_spec_product() {
-        return id_spec_product;
+    public Product getIdSpecProduct() {
+        return idSpecProduct;
     }
 
-    public void setId_spec_product(Product id_spec_product) {
-        this.id_spec_product = id_spec_product;
+    public void setIdSpecProduct(Product idSpecProduct) {
+        this.idSpecProduct = idSpecProduct;
     }
 }

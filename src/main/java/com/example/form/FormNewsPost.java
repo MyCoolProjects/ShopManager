@@ -1,17 +1,12 @@
 package com.example.form;
 
-public class FormNews {
+public class FormNewsPost {
 
     private String title;
 
     private String description;
 
-    public FormNews() {
-    }
-
-    public FormNews(String title, String description) {
-        this.title = title;
-        this.description = description;
+    public FormNewsPost() {
     }
 
     public String getTitle() {
