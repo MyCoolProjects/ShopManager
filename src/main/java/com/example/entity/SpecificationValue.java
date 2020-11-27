@@ -14,7 +14,6 @@ public class SpecificationValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_specification_value")
     @JsonIgnore
     private Long id;
 

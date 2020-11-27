@@ -44,7 +44,7 @@ public class FormProduct {
         this.description = description;
     }
 
-    public Category getProductCategory() {
+    public Category getCategory() {
         return productCategory;
     }
 

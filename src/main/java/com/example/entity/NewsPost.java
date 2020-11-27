@@ -1,7 +1,6 @@
 package com.example.entity;
 
 import com.example.jsonview.JsonViews;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -13,9 +12,7 @@ public class NewsPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_news_post")
     @JsonView({ JsonViews.NewsPostBasic.class, JsonViews.ImageBasic.class })
-    @JsonProperty("id_news_post")
     private Long id;
 
     @NotBlank
@@ -23,7 +20,7 @@ public class NewsPost {
 
     private String description;
 
-    @JsonView(JsonViews.NewsPostBasic.class)
+    @JsonView({ JsonViews.NewsPostBasic.class })
     @OneToOne(mappedBy = "idImageNews", cascade = CascadeType.REMOVE)
     Image image;
 

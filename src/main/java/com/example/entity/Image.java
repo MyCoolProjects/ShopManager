@@ -2,8 +2,9 @@ package com.example.entity;
 
 import com.example.jsonview.JsonViews;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -15,9 +16,7 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_image")
-    @JsonView({ JsonViews.ImageBasic.class, JsonViews.ProductBasic.class })
-    @JsonProperty("id_image")
+    @JsonView({ JsonViews.ImageBasic.class, JsonViews.ProductBasic.class, JsonViews.NewsPostBasic.class })
     private Long id;
 
     @JsonIgnore
@@ -27,14 +26,16 @@ public class Image {
     @NotNull
     private byte[] data;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonInclude(Include.NON_NULL)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JsonView({ JsonViews.ImageBasic.class })
-    @JsonUnwrapped
+    @JsonUnwrapped(prefix = "product_")
     Product idImageProduct;
 
-    @OneToOne()
+    @JsonInclude(Include.NON_NULL)
+    @OneToOne(optional = true, fetch = FetchType.LAZY)
     @JsonView({ JsonViews.ImageBasic.class })
-    @JsonUnwrapped
+    @JsonUnwrapped(prefix = "news_post_")
     NewsPost idImageNews;
 
     public Image() {

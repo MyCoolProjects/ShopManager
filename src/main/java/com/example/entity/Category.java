@@ -14,16 +14,14 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_category")
     @JsonView({JsonViews.ProductBasic.class})
     private Long id;
 
-    @Column(name = "name_category")
     @JsonView({JsonViews.ProductBasic.class})
     @NotBlank
     private String name;
 
-    @OneToMany(mappedBy = "productCategory")
+    @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<Product> product;
 

@@ -2,7 +2,6 @@ package com.example.entity;
 
 import com.example.form.FormProduct;
 import com.example.jsonview.JsonViews;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -18,12 +17,9 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_product")
     @JsonView({ JsonViews.ProductBasic.class, JsonViews.ImageBasic.class })
-    @JsonProperty("id_product")
     private Long id;
 
-    @Column(name = "name_product")
     @JsonView({ JsonViews.ProductBasic.class })
     @NotBlank
     private String name;
@@ -37,7 +33,7 @@ public class Product {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonView({ JsonViews.ProductBasic.class })
-    Category productCategory;
+    Category category;
 
     @OneToMany(mappedBy = "idSpecProduct", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @JsonView({ JsonViews.ProductBasic.class })
@@ -51,11 +47,11 @@ public class Product {
 
     }
 
-    public Product(String name, float price, String description, Category productCategory) {
+    public Product(String name, float price, String description, Category category) {
         this.name = name;
         this.price = price;
         this.description = description;
-        this.productCategory = productCategory;
+        this.category = category;
     }
 
     public Product(FormProduct formProduct) {
@@ -63,7 +59,7 @@ public class Product {
         this.price = formProduct.getPrice();
         this.description = formProduct.getDescription();
         this.specifications = formProduct.getSpecifications();
-        this.productCategory = formProduct.getProductCategory();
+        this.category = formProduct.getCategory();
     }
 
     public Long getId() {
@@ -99,11 +95,11 @@ public class Product {
     }
 
     public Category getProductCategory() {
-        return productCategory;
+        return category;
     }
 
-    public void setProductCategory(Category productCategory) {
-        this.productCategory = productCategory;
+    public void setCategory(Category productCategory) {
+        this.category = productCategory;
     }
 
     public List<SpecificationValue> getSpecifications() {

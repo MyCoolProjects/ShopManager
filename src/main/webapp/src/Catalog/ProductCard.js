@@ -35,12 +35,12 @@ export default class ProductCard extends Component {
     // Описани карточки товара
     const productItems = this.props.products.map(product => (
 
-      <Card bg="white" border="secondary" key={product.id_product} >
-        <Link to={`/product/${product.id_product}`}>
-          {product.images.length > 0 && <Card.Img variant="top" src={`/image/${product.images[0]?.id_image}`} alt="RobertPattison"></Card.Img>}
+      <Card bg="white" border="secondary" key={product.id} >
+        <Link to={`/product/${product.id}`}>
+          {product.images.length > 0 && <Card.Img variant="top" src={`/image/${product.images[0]?.id}`} alt="RobertPattison"></Card.Img>}
         </Link>
         <Card.Body>
-          <Link className="Card-Name p-0 m-0" to={`/product/${product.id_product}`}>
+          <Link className="Card-Name p-0 m-0" to={`/product/${product.id}`}>
             <Card.Title style={{ fontSize: '26px' }}>{product.name}</Card.Title>
           </Link>
           <Card.Text className="Card-Price pt-2" style={{ fontSize: '20px' }}>

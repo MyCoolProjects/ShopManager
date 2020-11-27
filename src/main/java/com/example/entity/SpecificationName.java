@@ -14,11 +14,9 @@ public class SpecificationName {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_specification_name")
     @JsonView({JsonViews.ProductBasic.class})
     private Long id;
 
-    @Column(name = "name_specification_name")
     @JsonView({JsonViews.ProductBasic.class})
     @NotBlank
     private String name;
@@ -27,7 +25,6 @@ public class SpecificationName {
     @JsonIgnore
     private Category idCategory;
 
-    @Column(name = "name_specification_value")
     @OneToMany(mappedBy = "idSpecName")
     @JsonIgnore
     private List<SpecificationValue> specificationValues;
