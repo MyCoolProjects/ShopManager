@@ -1,18 +1,22 @@
 package com.example.entity;
 
-import com.example.jsonview.JsonViews;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
+
 @Entity
-@Table(name = "NewsPosts")
+@Data
 public class NewsPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({ JsonViews.NewsPostBasic.class, JsonViews.ImageBasic.class })
     private Long id;
 
     @NotBlank
@@ -20,8 +24,8 @@ public class NewsPost {
 
     private String description;
 
-    @JsonView({ JsonViews.NewsPostBasic.class })
-    @OneToOne(mappedBy = "idImageNews", cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "newspost_id")
     Image image;
 
     public NewsPost() {

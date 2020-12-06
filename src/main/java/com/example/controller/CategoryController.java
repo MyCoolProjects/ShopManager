@@ -6,30 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("${api-path}")
-public class CategoryController {
+class CategoryController {
 
     @Autowired
     CategoryRepository categoryRepository;
 
-    //Получить категории
-    @GetMapping("/category")
-    public List<Category> getCategories() {
+    // Получить категории
+    @GetMapping("/categories")
+    List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    //Получить категорию
-    @GetMapping("/category/{id}")
-    public Optional<Category> getCategory(@PathVariable Long id) {
-        return categoryRepository.findById(id);
+    // Получить категорию
+    @GetMapping("/categories/{id}")
+    Category getCategory(@PathVariable Long id) {
+        return categoryRepository.getOne(id);
     }
 
-    //Добавить категорию
-    @PostMapping("/category")
-    public void postCategory(@RequestBody Category category) {
-        categoryRepository.save(category);
+    // Добавить категорию
+    @PostMapping("/categories")
+    Category createCategory(@RequestBody Category category) {
+        return categoryRepository.save(category);
+    }
+
+    @DeleteMapping("/categories/{id}")
+    void deleteCategory(@PathVariable Long id) {
+        categoryRepository.deleteById(id);
     }
 }

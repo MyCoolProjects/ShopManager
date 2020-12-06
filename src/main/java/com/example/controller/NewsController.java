@@ -1,24 +1,23 @@
 package com.example.controller;
 
+import java.util.List;
+
 import com.example.entity.NewsPost;
-import com.example.form.FormNewsPost;
-import com.example.jsonview.JsonViews;
 import com.example.repository.ImageRepository;
 import com.example.repository.NewsRepository;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import net.minidev.json.JSONObject;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${api-path}")
-public class NewsController {
+class NewsController {
 
     @Autowired
     NewsRepository newsRepository;
@@ -27,28 +26,25 @@ public class NewsController {
     ImageRepository imageRepository;
 
     // Вернуть новости
-    @GetMapping("/news")
-    @JsonView(JsonViews.NewsPostBasic.class)
-    public List<NewsPost> getNewsPosts() {
+    @GetMapping("/newsposts")
+    List<NewsPost> getAllNewsPosts() {
         return newsRepository.findAll();
     }
 
+    @GetMapping("/newsposts/{id}")
+    NewsPost getNewsPost(@PathVariable Long id) {
+        return newsRepository.getOne(id);
+    }
+
     // Добавить новость
-    @PostMapping("/news")
-    @JsonView(JsonViews.NewsPostBasic.class)
-    public ResponseEntity<String> addNewsPost(@RequestBody FormNewsPost formNews) {
-        NewsPost post = new NewsPost();
-        post.setTitle(formNews.getTitle());
-        post.setDescription(formNews.getDescription());
-        newsRepository.save(post);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", post.getId());
-        return ResponseEntity.status(HttpStatus.OK).body(jsonObject.toString());
+    @PostMapping("/newsposts")
+    NewsPost createNewsPost(@RequestBody NewsPost newsPost) {
+        return newsRepository.save(newsPost);
     }
 
     // Удалить продукт
-    @DeleteMapping("/news/{id}")
-    public void deleteNewsPost(@PathVariable("id") Long id) {
+    @DeleteMapping("/newsposts/{id}")
+    void deleteNewsPost(@PathVariable Long id) {
         newsRepository.deleteById(id);
     }
 

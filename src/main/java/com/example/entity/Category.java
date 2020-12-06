@@ -1,69 +1,32 @@
 package com.example.entity;
 
-import com.example.jsonview.JsonViews;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+
+import lombok.Data;
+
 @Entity
-@Table(name = "Categories")
+@Data
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({JsonViews.ProductBasic.class})
     private Long id;
 
-    @JsonView({JsonViews.ProductBasic.class})
     @NotBlank
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private List<Product> product;
+    private List<Product> products;
 
-    @OneToMany(mappedBy = "idCategory", fetch = FetchType.LAZY)
-    private List<SpecificationName> specifications;
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<Specification> specifications;
 
-    public Category() {
-    }
-
-    public Category(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Product> getProduct() {
-        return product;
-    }
-
-    public void setProduct(List<Product> product) {
-        this.product = product;
-    }
-
-    public List<SpecificationName> getSpecifications() {
-        return specifications;
-    }
-
-    public void setSpecifications(List<SpecificationName> specifications) {
-        this.specifications = specifications;
-    }
 }
