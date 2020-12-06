@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.entity.Image;
 import com.example.repository.ImageRepository;
-import com.example.repository.NewsRepository;
+import com.example.repository.NewsPostsRepository;
 import com.example.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ class ImageController {
     ProductRepository productRepository;
 
     @Autowired
-    NewsRepository newsRepository;
+    NewsPostsRepository newsRepository;
 
     // Добавить изображение
     /*

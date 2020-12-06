@@ -44,12 +44,12 @@ public class Product {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "category_id")
+    @JoinColumn
     @JsonIgnoreProperties("products")
     Category category;
 
     @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "specification_id"))
+    @JoinTable
     @JsonIgnoreProperties("products")
     List<Specification> specifications;
 

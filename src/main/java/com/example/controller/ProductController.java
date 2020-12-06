@@ -39,7 +39,7 @@ class ProductController {
     // Получить продукт
     @GetMapping("/products/{id}")
     Product getProduct(@PathVariable Long id) {
-        return productRepository.getOne(id);
+        return productRepository.findById(id).get();
     }
 
     // Добавить продукт

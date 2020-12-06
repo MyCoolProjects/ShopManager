@@ -38,7 +38,7 @@ public class Image {
 
     @JsonInclude(Include.NON_NULL)
     @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "product_id")
+    @JoinColumn
     @JsonIgnoreProperties("images")
     Product product;
 

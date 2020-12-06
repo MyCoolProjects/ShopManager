@@ -31,7 +31,7 @@ public class Specification {
     private String value;
 
     @ManyToOne
-    @JoinColumn(name = "id_category")
+    @JoinColumn
     @JsonIgnoreProperties("specifications")
     private Category category;
 

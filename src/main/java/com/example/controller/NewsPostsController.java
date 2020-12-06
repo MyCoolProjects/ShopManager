@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.example.entity.NewsPost;
 import com.example.repository.ImageRepository;
-import com.example.repository.NewsRepository;
+import com.example.repository.NewsPostsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${api-path}")
-class NewsController {
+class NewsPostsController {
 
     @Autowired
-    NewsRepository newsRepository;
+    NewsPostsRepository newsPostsRepository;
 
     @Autowired
     ImageRepository imageRepository;
@@ -28,24 +28,24 @@ class NewsController {
     // Вернуть новости
     @GetMapping("/newsposts")
     List<NewsPost> getAllNewsPosts() {
-        return newsRepository.findAll();
+        return newsPostsRepository.findAll();
     }
 
     @GetMapping("/newsposts/{id}")
     NewsPost getNewsPost(@PathVariable Long id) {
-        return newsRepository.getOne(id);
+        return newsPostsRepository.findById(id).get();
     }
 
     // Добавить новость
     @PostMapping("/newsposts")
     NewsPost createNewsPost(@RequestBody NewsPost newsPost) {
-        return newsRepository.save(newsPost);
+        return newsPostsRepository.save(newsPost);
     }
 
     // Удалить продукт
     @DeleteMapping("/newsposts/{id}")
     void deleteNewsPost(@PathVariable Long id) {
-        newsRepository.deleteById(id);
+        newsPostsRepository.deleteById(id);
     }
 
 }

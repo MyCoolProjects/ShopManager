@@ -31,7 +31,7 @@ public class NewsPost {
     private String description;
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "newspost_id")
+    @JoinColumn
     Image image;
 
 }

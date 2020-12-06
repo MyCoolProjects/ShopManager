@@ -23,7 +23,7 @@ class CategoryController {
     // Получить категорию
     @GetMapping("/categories/{id}")
     Category getCategory(@PathVariable Long id) {
-        return categoryRepository.getOne(id);
+        return categoryRepository.findById(id).get();
     }
 
     // Добавить категорию
