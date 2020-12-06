@@ -11,13 +11,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Image {
 
     @Id
@@ -32,19 +39,12 @@ public class Image {
     @JsonInclude(Include.NON_NULL)
     @ManyToOne(optional = true, fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "product_id")
+    @JsonIgnoreProperties("images")
     Product product;
 
     @JsonInclude(Include.NON_NULL)
     @OneToOne(mappedBy = "image", optional = true, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("image")
     NewsPost newsPost;
-
-    public Image() {
-    }
-
-    public Image(String type, byte[] data, Product idImageProduct) {
-        this.type = type;
-        this.data = data;
-        this.product = idImageProduct;
-    }
 
 }

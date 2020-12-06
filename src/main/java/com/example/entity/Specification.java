@@ -9,10 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Specification {
 
     @Id
@@ -22,11 +30,13 @@ public class Specification {
     @NotBlank
     private String value;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_specification_name")
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    @JsonIgnoreProperties("specifications")
     private Category category;
 
     @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("specifications")
     private Product product;
 
 }

@@ -14,16 +14,20 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @JsonPropertyOrder({ "id" })
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Product {
 
     @Id
@@ -40,14 +44,16 @@ public class Product {
 
     @NotNull
     @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties("products")
     Category category;
 
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinTable(joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "specification_id"))
+    @JsonIgnoreProperties("products")
     List<Specification> specifications;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "image_id"))
+    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     List<Image> images;
 
 }
