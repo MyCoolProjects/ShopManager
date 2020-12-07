@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,8 +47,7 @@ public class Image {
     private Product product;
 
     @JsonInclude(Include.NON_NULL)
-    @OneToOne
-    @JoinColumn(name = "newspost_id")
+    @OneToOne(mappedBy = "image")
     @JsonIgnoreProperties("image")
     @JsonProperty("newspost")
     private NewsPost newsPost;
