@@ -47,9 +47,10 @@ public class Image {
     private Product product;
 
     @JsonInclude(Include.NON_NULL)
-    @OneToOne(mappedBy = "image")
+    @OneToOne
+    @JoinColumn(unique = true)
     @JsonIgnoreProperties("image")
-    @JsonProperty("newspost")
+    @JsonProperty("news_post")
     private NewsPost newsPost;
 
 }

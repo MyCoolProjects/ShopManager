@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
@@ -32,10 +31,8 @@ public class NewsPost {
 
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    @JsonIgnoreProperties("newspost")
+    @OneToOne(mappedBy = "newsPost", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("news_post")
     private Image image;
 
-    // TODO More than one value in column
 }
