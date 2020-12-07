@@ -46,14 +46,15 @@ public class Product {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn
     @JsonIgnoreProperties("products")
-    Category category;
+    private Category category;
 
     @OneToMany(cascade = CascadeType.REMOVE)
     @JoinTable
     @JsonIgnoreProperties("products")
-    List<Specification> specifications;
+    private List<Specification> specifications;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
-    List<Image> images;
+    @JsonIgnoreProperties("product")
+    private List<Image> images;
 
 }

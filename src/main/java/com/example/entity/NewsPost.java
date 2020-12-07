@@ -5,9 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +31,9 @@ public class NewsPost {
 
     private String description;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn
-    Image image;
+    @OneToOne(mappedBy = "newsPost", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("newsPost")
+    private Image image;
 
+    // TODO More than one value in column
 }

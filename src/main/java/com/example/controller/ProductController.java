@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.example.entity.Product;
@@ -44,7 +43,7 @@ class ProductController {
 
     // Добавить продукт
     @PostMapping("/products")
-    Product postProduct(@RequestBody Product product) throws IOException {
+    Product postProduct(@RequestBody Product product) {
         return productRepository.save(product);
     }
 
