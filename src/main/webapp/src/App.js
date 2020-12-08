@@ -1,13 +1,15 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Header from './Header/Header.js';
-import Footer from './Footer/Footer.js';
-import Home from './Home/Home.js';
-import ProductsList from './Catalog/ProductsList.js';
-import ProductFetch from './Product/ProductFetch.js';
+import Header from './Header/Header';
+import Footer from './Footer/Footer';
+import Home from './Home/Home';
+import ProductsList from './Catalog/ProductsList';
+import ProductFetch from './Product/ProductFetch';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ProductPanel from './ProductPanel/ProductPanel';
+
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ function App() {
         <Route path="/catalog" component={ProductsList} />
         <Route path="/product/:id" component={ProductFetch} />
         <Route path="/" component={Home} />
+        <Route path="/product-panel" component={ProductPanel} />
       </Switch>
       <Footer></Footer>
       {/* exact нужен для того, чтобы загружалась при пасе в один корень P.S. Загружает при npm start*/}
