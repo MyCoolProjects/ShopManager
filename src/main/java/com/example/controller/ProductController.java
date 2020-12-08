@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.example.entity.Product;
 import com.example.repository.CategoryRepository;
@@ -31,8 +33,8 @@ class ProductController {
 
     // Получить продукты
     @GetMapping("/products")
-    List<Product> getProducts() {
-        return productRepository.findAll();
+    Map<String, List<Product>> getProducts() {
+        return Collections.singletonMap("products", productRepository.findAll());
     }
 
     // Получить продукт
