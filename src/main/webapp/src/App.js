@@ -12,7 +12,8 @@ function App() {
   return (
     <BrowserRouter>
       <Header></Header>
-      {/* пропуск места из-за фиксированного header */}<div style={{ height: '104px' }}></div>
+      {/* пропуск места из-за фиксированного header */}
+      <div style={{ height: '104px' }}></div>
       <Switch>
         <Route path="/catalog" component={ProductsList} />
         <Route path="/product/:id" component={ProductFetch} />

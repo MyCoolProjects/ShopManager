@@ -35,7 +35,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Container fluid style={{ fontSize: 20 }} key={this.props.id} expand="md">
+      <Container fluid style={{ fontSize: 20 }} expand="md">
         <Container>
           <Carousel variant="secondary">
 
