@@ -38,3 +38,5 @@ data.sql
 ###
 application-*.properties
 *.log
+
+.eslintcache

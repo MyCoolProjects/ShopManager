@@ -1,6 +1,11 @@
 /* eslint-disable max-lines */
 /* eslint-disable no-undef */
 module.exports = {
+    'settings': {
+        'react': {
+            'version': 'detect',
+        }
+    },
     'env': {
         'browser': true,
         'es2021': true,
@@ -8,8 +13,7 @@ module.exports = {
     },
     'extends': [
         'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:jest/recommended'
+        'plugin:react/recommended'
     ],
     'parserOptions': {
         'ecmaFeatures': {
@@ -27,7 +31,7 @@ module.exports = {
         'array-element-newline': [
             'error',
             {
-                'ArrayExpression': 'always',
+                'ArrayExpression': 'consistent',
                 'ArrayPattern': 'never'
             }
         ],
@@ -135,7 +139,7 @@ module.exports = {
         'max-lines-per-function': 'off',
         'max-nested-callbacks': 'error',
         'max-params': 'error',
-        'max-statements': 'error',
+        'max-statements': 'off',
         'max-statements-per-line': 'error',
         'multiline-comment-style': [
             'error',
