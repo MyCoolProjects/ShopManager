@@ -1,7 +1,9 @@
 package com.example.controller;
 
 import java.util.Base64;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.example.dto.ImageRequestDto;
 import com.example.entity.Image;
@@ -56,8 +58,8 @@ class ImageController {
 
     // Получить изображения
     @GetMapping("/images")
-    List<Image> getAllImages() {
-        return imageRepository.findAll();
+    Map<String, List<Image>> getAllImages() {
+        return Collections.singletonMap("images", imageRepository.findAll());
     }
 
     // Получить изображение

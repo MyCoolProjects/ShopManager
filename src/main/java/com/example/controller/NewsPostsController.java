@@ -1,6 +1,8 @@
 package com.example.controller;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.example.entity.NewsPost;
 import com.example.repository.ImageRepository;
@@ -27,8 +29,8 @@ class NewsPostsController {
 
     // Вернуть новости
     @GetMapping("/newsposts")
-    List<NewsPost> getAllNewsPosts() {
-        return newsPostsRepository.findAll();
+    Map<String, List<NewsPost>> getAllNewsPosts() {
+        return Collections.singletonMap("news_posts", newsPostsRepository.findAll());
     }
 
     @GetMapping("/newsposts/{id}")
