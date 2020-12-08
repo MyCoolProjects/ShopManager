@@ -15,7 +15,7 @@ class ProductFetch extends Component {
     }
     componentDidMount() {
         const id = this.props.match.params.id;
-        fetch(`/api/product/${id}`)
+        fetch(`/api/products/${id}`)
             .then((res) => {
                 if (!res.ok) throw new Error('Not 2xx response');
                 return res;

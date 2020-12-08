@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, CardColumns, Form, Button, Spinner } from 'react-bootstrap';
-// const Product_Card = lazy(() => import('./Product_Card.js'))
 import ProductCard from './ProductCard.js';
 import './ProductCard.css';
 
@@ -11,11 +10,10 @@ class ProductsList extends Component {
       error: null,
       isLoaded: false,
       products: []
-
     };
   }
   componentDidMount() {
-    fetch('/api/product')
+    fetch('/api/products')
       .then(res => {
         if (!res.ok) throw new Error('Not 2xx response');
         return res;
@@ -85,7 +83,7 @@ class ProductsList extends Component {
           <Container fluid className="pt-3">
             <Row>
               <Col sm={1}></Col>
-              <Col sm={2} className="pl-5"> {/* катекогрии фильтры и прочее */}
+              <Col sm={2} className="pl-5"> {/* категории, фильтры и прочее */}
 
                 <Row><b>Категории:</b></Row>
                 <Row className="pt-3 pb-5">
@@ -128,7 +126,7 @@ class ProductsList extends Component {
               </Col>
 
 
-              {/* катекогрии фильтры и прочее */}
+              {/* категории, фильтры и прочее */}
               <Col sm={8} style={{ textAlign: 'end' }}>
                 <Row>
                   <Col className="filter-2">

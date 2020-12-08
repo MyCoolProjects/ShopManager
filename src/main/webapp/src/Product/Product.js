@@ -50,8 +50,7 @@ export default class Product extends Component {
                           fluid
                           className="d-block"
                           style={{ position: 'relative', objectFit: 'cover', height: '600px' }}
-                          src={`/image/${image.id}`}
-                          alt="First slide"
+                          src={`/images/${image.id}`}
                         />
                       </Carousel.Item>
                     )}
