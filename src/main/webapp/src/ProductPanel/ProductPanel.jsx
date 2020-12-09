@@ -17,7 +17,7 @@ const ProductPanel = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-  const [specs] = useState([]);
+  // const [specs] = useState([]);
   const [status, setStatus] = useState('');
   const productIdRef = useRef();
 
@@ -26,7 +26,8 @@ const ProductPanel = () => {
     const reader = new FileReader();
 
     console.log(event.target.files);
-    if (event.target.files?.item(0)) reader.readAsDataURL(event);
+    if (event.target.files.item(0))
+      reader.readAsDataURL(event.target.files.item(0));
     reader.onload = () => {
       let data = {};
 
@@ -46,22 +47,22 @@ const ProductPanel = () => {
       price: price.replaceAll(',', '.'),
       description,
       // eslint-disable-next-line camelcase
-      product_category: {
+      category: {
         id: 1,
       },
-      specifications: specs,
+      specifications: null,
     };
 
     try {
       console.log(newProduct);
-      const res = await fetch(`${HOST_URL}api/product`, {
+      const res = await fetch(`${HOST_URL}api/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(newProduct),
       });
-      if (!res.ok) throw new Error('Response not ok');
+      if (!res.ok) res.json().then((data) => console.log(data.message));
       const data = await res.json();
 
       console.log(data.id);
@@ -76,19 +77,21 @@ const ProductPanel = () => {
     for (const image of images) {
       try {
         const newImage = {
-          image: image.data,
+          payload: image.data,
           // eslint-disable-next-line camelcase
-          id_image_product: productIdRef.current,
+          product_id: productIdRef.current,
         };
         console.log(newImage);
-        const res = fetch(`${HOST_URL}image`, {
+        const res = fetch(`${HOST_URL}images`, {
+        // const res = fetch('https://echo-api.3scale.net/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(newImage),
         });
-        if (!res.ok) throw new Error('Response not ok');
+        // eslint-disable-next-line no-await-in-loop
+        if (!res.ok) console.log(await res.json);
         console.log(res);
       } catch (error) {
         console.log(error);

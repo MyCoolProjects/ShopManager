@@ -19,8 +19,8 @@ function App() {
       <Switch>
         <Route path="/catalog" component={ProductsList} />
         <Route path="/product/:id" component={ProductFetch} />
-        <Route path="/" component={Home} />
         <Route path="/product-panel" component={ProductPanel} />
+        <Route path="/" component={Home} />
       </Switch>
       <Footer></Footer>
       {/* exact нужен для того, чтобы загружалась при пасе в один корень P.S. Загружает при npm start*/}

@@ -19,6 +19,7 @@ export default class Header extends Component {
             <Nav className="menu mr-auto">
               <Nav.Item><Link className="link" to="/">Домой</Link></Nav.Item>
               <Nav.Item><Link className="link" to="/catalog">Каталог</Link></Nav.Item>
+              <Nav.Item><Link className="link" to="/product-panel">Добавить товар</Link></Nav.Item>
               {/* <Nav.Link><Link className="link" to="/product/3">Product/3</Link></Nav.Link> */}
             </Nav>
 

@@ -247,7 +247,7 @@ module.exports = {
         'no-void': 'error',
         'no-warning-comments': 'error',
         'no-whitespace-before-property': 'error',
-        'nonblock-statement-body-position': 'error',
+        'nonblock-statement-body-position': 'off',
         'object-curly-newline': 'error',
         'object-curly-spacing': [
             'error',

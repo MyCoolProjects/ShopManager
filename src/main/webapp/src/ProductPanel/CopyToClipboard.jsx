@@ -24,7 +24,6 @@ const CopyToClipboard = (props) => {
 };
 
 CopyToClipboard.propTypes = {
-  handleChange: PropTypes.func.isRequired,
   image: PropTypes.string,
 };
 
