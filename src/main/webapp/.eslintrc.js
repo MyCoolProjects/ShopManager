@@ -1,9 +1,10 @@
 /* eslint-disable max-lines */
 /* eslint-disable no-undef */
+/* spell-checker: disable */
 module.exports = {
     'settings': {
         'react': {
-            'version': 'detect',
+            'version': '16.14.0',
         }
     },
     'env': {
