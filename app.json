@@ -1,5 +1,5 @@
 {
-  "addons": ["heroku-postgresql"],
+  "addons": ["heroku-postgresql:hobby-dev"],
   "buildpacks": [
     {
       "url": "heroku/gradle"
