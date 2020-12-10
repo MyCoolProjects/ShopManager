@@ -168,7 +168,7 @@ const ProductPanel = () => {
           </Form.Group>
           <InputGroup>
             <InputGroup.Prepend>
-              <Button onClick={handleSubmit} variant="secondary" type="submit">
+              <Button onClick={handleSubmit} variant="secondary">
                 Submit
               </Button>
             </InputGroup.Prepend>
