@@ -83,7 +83,7 @@ const ProductPanel = () => {
         };
         console.log(newImage);
         const res = fetch(`${HOST_URL}images`, {
-        // const res = fetch('https://echo-api.3scale.net/', {
+          // const res = fetch('https://echo-api.3scale.net/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -108,10 +108,26 @@ const ProductPanel = () => {
       event.preventDefault();
     }
   };
+
+  const addCategory = () => {
+    fetch('/api/categories', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'Test Category',
+      }),
+    });
+  };
+
   return (
     <div>
       <Container className="border">
         <Form className="p-3">
+          <Button className="mb-3" onClick={addCategory}>
+            Добавить категорию
+          </Button>
           <Form.Group>
             <Form.Label>Наименование</Form.Label>
             <Form.Control
