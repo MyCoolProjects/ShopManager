@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.mycoolprojects.shopmanager.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.mycoolprojects.shopmanager.repository;
 
-import com.example.entity.Category;
+import com.mycoolprojects.shopmanager.entity.Category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

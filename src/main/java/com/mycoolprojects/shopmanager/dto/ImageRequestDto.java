@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.mycoolprojects.shopmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.mycoolprojects.shopmanager.repository;
 
-import com.example.entity.Specification;
+import com.mycoolprojects.shopmanager.entity.Specification;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,13 +1,13 @@
-package com.example.controller;
+package com.mycoolprojects.shopmanager.controller;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import com.example.entity.Product;
-import com.example.repository.CategoryRepository;
-import com.example.repository.ImageRepository;
-import com.example.repository.ProductRepository;
+import com.mycoolprojects.shopmanager.entity.Product;
+import com.mycoolprojects.shopmanager.repository.CategoryRepository;
+import com.mycoolprojects.shopmanager.repository.ImageRepository;
+import com.mycoolprojects.shopmanager.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

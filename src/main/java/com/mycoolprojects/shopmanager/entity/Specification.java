@@ -1,11 +1,12 @@
-package com.example.entity;
+package com.mycoolprojects.shopmanager.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -20,19 +21,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class NewsPost {
+public class Specification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String title;
+    private String value;
 
-    private String description;
+    @ManyToOne
+    @JoinColumn
+    @JsonIgnoreProperties("specifications")
+    private Category category;
 
-    @OneToOne(mappedBy = "newsPost", cascade = CascadeType.REMOVE)
-    @JsonIgnoreProperties("news_post")
-    private Image image;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("specifications")
+    private Product product;
 
 }

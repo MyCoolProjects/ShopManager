@@ -1,15 +1,15 @@
-package com.example.controller;
+package com.mycoolprojects.shopmanager.controller;
 
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import com.example.dto.ImageRequestDto;
-import com.example.entity.Image;
-import com.example.repository.ImageRepository;
-import com.example.repository.NewsPostsRepository;
-import com.example.repository.ProductRepository;
+import com.mycoolprojects.shopmanager.dto.ImageRequestDto;
+import com.mycoolprojects.shopmanager.entity.Image;
+import com.mycoolprojects.shopmanager.repository.ImageRepository;
+import com.mycoolprojects.shopmanager.repository.NewsPostsRepository;
+import com.mycoolprojects.shopmanager.repository.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
