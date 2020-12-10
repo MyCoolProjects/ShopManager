@@ -2,28 +2,7 @@
 /* eslint-disable no-undef */
 /* spell-checker: disable */
 module.exports = {
-    'settings': {
-        'react': {
-            'version': '16.14.0',
-        }
-    },
-    'env': {
-        'browser': true,
-        'es2021': true,
-        'node': true
-    },
-    'extends': [
-        'eslint:recommended',
-        'plugin:react/recommended'
-    ],
-    'parserOptions': {
-        'ecmaFeatures': {
-            'jsx': true
-        },
-        'ecmaVersion': 12,
-        'sourceType': 'module'
-    },
-    'plugins': ['react'],
+    'extends': ['react-app'],
     'rules': {
         'accessor-pairs': 'error',
         'array-bracket-newline': 'error',
