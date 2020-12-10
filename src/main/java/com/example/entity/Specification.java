@@ -7,15 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,30 +21,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Image {
+public class Specification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String type;
+    private String value;
 
-    @NotNull
-    @JsonIgnore
-    private byte[] data;
-
-    @JsonInclude(Include.NON_NULL)
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn
-    @JsonIgnoreProperties("images")
-    private Product product;
+    @JsonIgnoreProperties("specifications")
+    private Category category;
 
-    @JsonInclude(Include.NON_NULL)
-    @OneToOne
-    @JoinColumn(unique = true)
-    @JsonIgnoreProperties("image")
-    @JsonProperty("news_post")
-    private NewsPost newsPost;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("specifications")
+    private Product product;
 
 }

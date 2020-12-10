@@ -16,7 +16,7 @@ export default class Header extends Component {
                     <Container>
                         <Row>
                             <Col sm>
-                                <Image fluid src={westCoast1} alt="WestCoast" width="30%" className="p-0 ml-0 mr-0 mt-3 mb-3" />
+                                <Image fluid src={westCoast1} alt="Logo" width="30%" className="p-0 ml-0 mr-0 mt-3 mb-3" />
                             </Col>
                         </Row>
                         <hr className="footer-delimiters" color="white" />
@@ -58,7 +58,7 @@ export default class Header extends Component {
                                 </div>
                             </Col>
                             <Col sm={5}>
-                                <Image fluid src={westCoast2} alt="WestCoast" className="p-0 m-0" />
+                                <Image fluid src={westCoast2} alt="Logo" className="p-0 m-0" />
                             </Col>
                         </Row>
                         <hr className="footer-delimiters" color="white" />

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, CardColumns, Form, Button, Spinner } from 'react-bootstrap';
-// const Product_Card = lazy(() => import('./Product_Card.js'))
+import {
+  Container,
+  Row,
+  Col,
+  CardColumns,
+  Form,
+  Button,
+  Spinner,
+} from 'react-bootstrap';
 import ProductCard from './ProductCard.js';
 import './ProductCard.css';
 
@@ -10,28 +17,27 @@ class ProductsList extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      products: []
-
+      products: [],
     };
   }
   componentDidMount() {
-    fetch('/api/product')
-      .then(res => {
+    fetch('/api/products')
+      .then((res) => {
         if (!res.ok) throw new Error('Not 2xx response');
         return res;
       })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((result) => {
         if (!result) throw new Error('Empty response');
         this.setState({
           isLoaded: true,
-          products: result.products
+          products: result.products,
         });
       })
       .catch((error) => {
         this.setState({
           isLoaded: true,
-          error
+          error,
         });
       });
     // fetch("/Main.json")
@@ -50,22 +56,24 @@ class ProductsList extends Component {
     //       })
     //     }
     //   )
-
   }
 
-
   render() {
-
-
     const { error, isLoaded, products } = this.state;
     if (error) {
+      return <div>Error {error.message}</div>;
+    } else if (!isLoaded) {
       return (
-        <div>Error {error.message}</div>
-      );
-    }
-    else if (!isLoaded) {
-      return (
-        <Container fluid className="mb-5 mt-5" style={{ textAlign: 'center', verticalAlign: 'middle', height: '757px', fontSize: 40 }}>
+        <Container
+          fluid
+          className="mb-5 mt-5"
+          style={{
+            textAlign: 'center',
+            verticalAlign: 'middle',
+            height: '757px',
+            fontSize: 40,
+          }}
+        >
           <Button variant="dark" disabled>
             <Spinner
               as="span"
@@ -73,21 +81,23 @@ class ProductsList extends Component {
               size=""
               role="status"
               aria-hidden="true"
-            />
-            {' '} Loading...
-            </Button>
+            />{' '}
+            Loading...
+          </Button>
         </Container>
       );
-    }
-    else {
+    } else {
       return (
         <>
           <Container fluid className="pt-3">
             <Row>
               <Col sm={1}></Col>
-              <Col sm={2} className="pl-5"> {/* катекогрии фильтры и прочее */}
-
-                <Row><b>Категории:</b></Row>
+              <Col sm={2} className="pl-5">
+                {' '}
+                {/* категории, фильтры и прочее */}
+                <Row>
+                  <b>Категории:</b>
+                </Row>
                 <Row className="pt-3 pb-5">
                   <Form.Group id="formGridCheckbox1">
                     <Form.Check type="checkbox" label="Check me out" />
@@ -95,8 +105,9 @@ class ProductsList extends Component {
                     <Form.Check type="checkbox" label="Check me out3" />
                   </Form.Group>
                 </Row>
-
-                <Row><b>Бренд:</b></Row>
+                <Row>
+                  <b>Бренд:</b>
+                </Row>
                 <Row className="pt-3 pb-5">
                   <Form.Group id="formGridCheckbox2">
                     <Form.Check type="checkbox" label="Check me out" />
@@ -104,17 +115,19 @@ class ProductsList extends Component {
                     <Form.Check type="checkbox" label="Check me out3" />
                   </Form.Group>
                 </Row>
-
                 <Row className="pb-5">
                   <Form>
                     <Form.Group controlId="formBasicRange">
-                      <Form.Label><b>Цена:</b></Form.Label>
+                      <Form.Label>
+                        <b>Цена:</b>
+                      </Form.Label>
                       <Form.Control type="range" />
                     </Form.Group>
                   </Form>
                 </Row>
-
-                <Row><b>Рейтинг покупателей:</b></Row>
+                <Row>
+                  <b>Рейтинг покупателей:</b>
+                </Row>
                 <Row className="pt-3 pb-5">
                   <Form>
                     <Form.Group id="formGridRadio">
@@ -124,17 +137,15 @@ class ProductsList extends Component {
                     </Form.Group>
                   </Form>
                 </Row>
-
               </Col>
 
-
-              {/* катекогрии фильтры и прочее */}
+              {/* категории, фильтры и прочее */}
               <Col sm={8} style={{ textAlign: 'end' }}>
                 <Row>
                   <Col className="filter-2">
                     <select defaultValue="1" className="select-css">
                       <option value="0">Сначала дешевле</option>
-                      <option value="1" >Сначала дороже</option>
+                      <option value="1">Сначала дороже</option>
                       <option value="2">Сначала с высоким рейтингом</option>
                       <option value="3">Сначала со скидкой</option>
                     </select>
@@ -142,7 +153,6 @@ class ProductsList extends Component {
                   </Col>
                 </Row>
                 <Col sm={1}></Col>
-
 
                 {/* список товаров */}
                 <Row>
@@ -152,10 +162,9 @@ class ProductsList extends Component {
                     </CardColumns>
                   </Col>
                 </Row>
-
               </Col>
             </Row>
-          </Container >
+          </Container>
         </>
       );
     }

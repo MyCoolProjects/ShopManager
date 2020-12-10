@@ -1,13 +1,11 @@
 package com.example.entity;
 
-import java.util.List;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -22,21 +20,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Category {
+public class NewsPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String name;
+    private String title;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("category")
-    private List<Product> products;
+    private String description;
 
-    @OneToMany(mappedBy = "category")
-    @JsonIgnoreProperties("category")
-    private List<Specification> specifications;
+    @OneToOne(mappedBy = "newsPost", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("news_post")
+    private Image image;
 
 }

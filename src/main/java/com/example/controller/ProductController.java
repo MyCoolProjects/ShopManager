@@ -1,65 +1,57 @@
 package com.example.controller;
 
-import com.example.entity.Product;
-import com.example.form.FormProduct;
-import com.example.repository.ImageRepository;
-import com.example.repository.ProductRepository;
-import com.example.repository.Specification_nameRepository;
-import com.example.service.ProductService;
-import com.example.view.Views;
-import com.fasterxml.jackson.annotation.JsonView;
-import net.minidev.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
+import com.example.entity.Product;
+import com.example.repository.CategoryRepository;
+import com.example.repository.ImageRepository;
+import com.example.repository.ProductRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("${api-path}")
-public class ProductController {
+class ProductController {
 
     @Autowired
     ProductRepository productRepository;
 
     @Autowired
-    Specification_nameRepository specificationnameRepository;
+    CategoryRepository categoryRepository;
 
     @Autowired
     ImageRepository imageRepository;
 
-    @Autowired
-    ProductService productService;
-
-    //Получить продукты
-    @GetMapping("/product")
-    @JsonView({Views.ProductBasic.class})
-    public Map<String, List<Product>> getProducts() {
-        var response = new HashMap<String, List<Product>>();
-        response.put("products", productRepository.findAll());
-        return response;
+    // Получить продукты
+    @GetMapping("/products")
+    Map<String, List<Product>> getProducts() {
+        return Collections.singletonMap("products", productRepository.findAll());
     }
 
-    //Получить продукт
-    @GetMapping("/product/{id}")
-    @JsonView({Views.ProductBasic.class})
-    public Optional<Product> getProduct(@PathVariable("id") Long id) {
-        return productRepository.findById(id);
+    // Получить продукт
+    @GetMapping("/products/{id}")
+    Product getProduct(@PathVariable Long id) {
+        return productRepository.findById(id).get();
     }
 
-    //Добавить продукт
-    @PostMapping("/product")
-    public ResponseEntity<String> postProduct(@RequestBody FormProduct formProduct) throws IOException {
-        Product product = new Product(formProduct);
-        Product product1 = productService.saveProduct(product);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", product1.getId());
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(jsonObject.toString());
+    // Добавить продукт
+    @PostMapping("/products")
+    Product postProduct(@RequestBody Product product) {
+        return productRepository.save(product);
+    }
+
+    // Удалить продукт
+    @DeleteMapping("/products/{id}")
+    void deleteProduct(@PathVariable Long id) {
+        productRepository.deleteById(id);
     }
 }
